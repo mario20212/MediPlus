@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'BW Gradual';
+    src: url(fonts/BwGradualDEMO-Light.ttf);
+  }
+  
+  @font-face {
+    font-family: 'BW Gradual Bold';
+    src: url(fonts/BwGradualDEMO-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Degular';
+    src: url(fonts/Degular-Light.ttf);
+  }
+  
+  
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+  .err{
+    color: red;
+  }
+  .container-1{
+    width: 55em;
+    height: 55em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 15px 0 15px;
+    background-color: #ffffff;
+    padding: 4rem 4rem;
+    border-radius: 5%;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    transition: transform .35s;
+  }
+  
+  .container-1:hover{
+    box-shadow: none;
+    transform: translate(-.1rem, -.1rem);
+  }
+  
+  .head{
+    color: #ffffff;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    color: #363949;
+  }
+  .input-field{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .input{
+    height: 40px;
+    width: 87%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #000000;
+    padding: 0 0 0 45px;
+    font-size: 1.25rem;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+  }
+  #logo{
+    position: relative;
+    top: -31px;
+    left: 17px;
+    color: #363949;
+    font-size: 1.5rem;
+  }
+  
+  ::-webkit-input-placeholder{
+    color: #363949;
+  }
+  
+  .submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    background: #363949;
+    cursor: pointer;
+    transition: .3s;
+    font-family: 'BW Gradual Bold';
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+  }
+  
+  .submit:hover{
+    box-shadow: 1px 5px 7 1px rgba(226, 223, 223, 0.747);
+  }
+  .bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    font-size: medium;
+    color: #363949;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .left{
+    display: flex;
+  }
+  label a{
+    color: #ffffff;
+    text-decoration: none;
+  }

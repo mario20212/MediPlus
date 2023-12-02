@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="keywords" content="Site keywords here">
+		<meta name="description" content="">
+		<meta name='copyright' content=''>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Mediplus</title>
+        <link rel="stylesheet" href="css/schedule.css">
+        <link rel="stylesheet" href="./css/fonts.css">
+        <link rel="stylesheet" href="./css/magnific-popup.css">
+        <link rel="icon" href="img/favicon.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader-outter"></div>
+            <div class="loader-inner"></div>
+
+            <div class="indicator"> 
+                <svg width="16px" height="12px">
+                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <%- include("./partials/nav.ejs") %>
+
+
+    <div class="schedule" style="margin-left: 10%;margin-bottom: 10%; margin-top:2%; height: 620px;">
+        <h2 class="title">Medicine Schedule</h2>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">Before Breakfast</div>
+                        <div class="medication">Take Medication 1</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+
+        </div>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">After Breakfast</div>
+                        <div class="medication">Take Medication 2</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        </div>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">Before Lunch</div>
+                        <div class="medication">Take Medication 3</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        </div>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">After Lunch</div>
+                        <div class="medication">Take Medication 4</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        </div>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">Before Dinner</div>
+                        <div class="medication">Take Medication 5</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        </div>
+        <div class="time-slot">
+            <div>
+                <div style="display: flex;">
+                    <div>
+                        <div class="time">After Dinner</div>
+                        <div class="medication">Take Medication 6</div>
+                    </div>
+               
+            <div style="margin-left: 70%;">
+                <div class="wrapper" >
+                    <form id="search-form" style="margin-top: 20%;">
+                        <div class="search-input">
+                            <a href="" target="_blank" hidden></a>
+                            <input class="written" type="text" placeholder="Type Medicine"
+                                style="font-size: 21px;">
+                            <div class="autocom-box">
+                                <!-- here list are inserted from javascript -->
+                            </div>
+                            <div class="icon" style="background-color: rgb(27, 107, 245);"><p style="color: #fff; font-size: 13px;padding-top: 7%;">ADD +</p> </div>
+                        </div>
+                        <input type="submit" id="hidden-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+   
+    <%- include("./partials/footer.ejs") %>
+
+    
+</body>
+</html>
+
+<script src="./js/suggestions.js"></script>
+<script src="./js/search.js"></script>
+
+
+
+
+
+
+<!-- jquery Min JS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

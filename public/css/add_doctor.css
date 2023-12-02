@@ -1,0 +1,402 @@
+@font-face {
+    font-family: 'BW Gradual';
+    src: url(fonts/BwGradualDEMO-Light.ttf);
+  }
+  
+  @font-face {
+    font-family: 'BW Gradual Bold';
+    src: url(fonts/BwGradualDEMO-Bold.ttf);
+  }
+  
+  @font-face {
+    font-family: 'Degular';
+    src: url(fonts/Degular-Light.ttf);
+  }
+  
+  :root {
+      --color-primary:#7380ec;
+      --color-danger:#ff7782;
+      --color-success:#41f1b6;
+      --color-warning: #ffbb55;
+      --color-white:#fff;
+      --color-info-dark: #7d8da1;
+      --color-info-light: #dce1eb;
+      --color-dark:#363949;
+      --color-light: rgba(132, 139, 200, 0.18);
+      --color-primary-variant: #111e88;
+      --color-dark-variant: #677483;
+      --color-background: #f6f6f9;
+      --card-border-radius: 2rem;
+      --border-radius-1: 0.4rem;
+      --border-radius-2: 0.8rem;
+      --border-radius-3: 1.2rem;
+      --card-padding: 1.8rem;
+      --padding-1: 1.2rem;
+      --box-shadow: 0 2rem 3rem var(--color-light);
+  }
+  
+  
+  main{
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+  }
+  main .updates{
+      background: var(--color-white);
+      padding: var(--card-padding);
+      border-radius: var(--card-border-radius);
+      box-shadow: var(--box-shadow);
+      transition: all 300ms ease;
+      flex: 1;
+      margin-top: 2rem;
+      padding: 5em;
+      height: 80vh;
+      overflow-y: auto;
+  }
+  main .updates h2{
+    line-height: 7rem;
+  }
+  
+  main .updates:hover{
+      box-shadow: none;
+  }
+  
+  main .updates .update{
+      margin-bottom: 7rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  main .updates .profile{
+      display: grid;
+      grid-template-columns: 2.6rem auto;
+      gap: 1rem;
+      margin-bottom: 1rem;
+  }
+  main .updates .add-delete{
+      margin-right: 1rem;
+  }
+  
+  main .updates .add-delete .remove{
+      appearance: none;
+      backface-visibility: hidden;
+      background-color: #ae2739;
+      border-radius: 8px;
+      border-style: none;
+      box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: normal;
+      line-height: 1.5;
+      outline: none;
+      overflow: hidden;
+      padding: .3rem 1rem;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      transform: translate3d(0, 0, 0);
+      transition: all .3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: top;
+      white-space: nowrap;
+  }
+  
+  main .updates .add-delete .remove:hover {
+      background-color: #6b1723;
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: .35s;
+      box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+  }
+  
+  main .updates .add-delete .remove:active{
+      transform: translateY(2px);
+      transition-duration: .35s;
+  }
+  
+  main .add-user{
+    flex: 1;
+    margin-top: 2rem;
+    margin-left: 5rem;
+  }
+  
+  main .add-user h2{
+    margin-bottom: 5rem;
+  }
+  
+  main .add-user .user-info{
+      margin-top: 2rem;
+      background: var(--color-white);
+      padding: var(--card-padding);
+      border-radius: var(--card-border-radius);
+      box-shadow: var(--box-shadow);
+      transition: all 300ms ease;
+      padding: 10rem;
+  }
+  
+  main .add-user .user-info:hover{
+      box-shadow: inset 1px 1px 20px #eaebee;
+  }
+  
+  main .add-user .user-info .user-add{
+      display: flex;
+      flex-direction: column;
+  }
+  
+  main .add-user .user-info .user-add .username , main .add-user .user-info .user-add .password{
+      margin-bottom: 2rem;
+  }
+  main .add-user .user-info .user-add .username input , main .add-user .user-info .user-add .password input{
+      border: 1px solid var(--color-dark);
+      border-radius: 10px;
+      padding-left: .6rem;
+  }
+  
+  main .add-user .user-info .add-choose{
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  main .add-user .user-info .add-choose button{
+      appearance: none;
+      backface-visibility: hidden;
+      background-color: #27ae60;
+      border-radius: 8px;
+      border-style: none;
+      box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: normal;
+      line-height: 1.5;
+      outline: none;
+      overflow: hidden;
+      padding: .3rem 1rem;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      transform: translate3d(0, 0, 0);
+      transition: all .3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: top;
+      white-space: nowrap;
+  }
+  main .add-user .user-info .add-choose button:hover {
+      background-color: #186e3c;
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: .35s;
+      box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+  }
+  
+  main .add-user .user-info .add-choose button:active{
+      transform: translateY(2px);
+      transition-duration: .35s;
+  }
+    .checkbox-wrapper-19 {
+      box-sizing: border-box;
+      --background-color: #fff;
+      --checkbox-height: 25px;
+    }
+  
+    @-moz-keyframes dothabottomcheck-19 {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) / 2);
+      }
+    }
+  
+    @-webkit-keyframes dothabottomcheck-19 {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) / 2);
+      }
+    }
+  
+    @keyframes dothabottomcheck-19 {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) / 2);
+      }
+    }
+  
+    @keyframes dothatopcheck-19 {
+      0% {
+        height: 0;
+      }
+      50% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) * 1.2);
+      }
+    }
+  
+    @-webkit-keyframes dothatopcheck-19 {
+      0% {
+        height: 0;
+      }
+      50% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) * 1.2);
+      }
+    }
+  
+    @-moz-keyframes dothatopcheck-19 {
+      0% {
+        height: 0;
+      }
+      50% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--checkbox-height) * 1.2);
+      }
+    }
+    .checkbox-wrapper-19{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .checkbox-wrapper-19 h5{
+      margin-bottom: .75rem;
+    }
+    .checkbox-wrapper-19 input[type=checkbox] {
+      display: none;
+    }
+  
+    .checkbox-wrapper-19 .check-box {
+      height: var(--checkbox-height);
+      width: var(--checkbox-height);
+      background-color: transparent;
+      border: calc(var(--checkbox-height) * .1) solid #000;
+      border-radius: 5px;
+      position: relative;
+      display: inline-block;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -moz-transition: border-color ease 0.2s;
+      -o-transition: border-color ease 0.2s;
+      -webkit-transition: border-color ease 0.2s;
+      transition: border-color ease 0.2s;
+      cursor: pointer;
+    }
+    .checkbox-wrapper-19 .check-box::before,
+    .checkbox-wrapper-19 .check-box::after {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      position: absolute;
+      height: 0;
+      width: calc(var(--checkbox-height) * .2);
+      background-color: #34b93d;
+      display: inline-block;
+      -moz-transform-origin: left top;
+      -ms-transform-origin: left top;
+      -o-transform-origin: left top;
+      -webkit-transform-origin: left top;
+      transform-origin: left top;
+      border-radius: 5px;
+      content: " ";
+      -webkit-transition: opacity ease 0.5;
+      -moz-transition: opacity ease 0.5;
+      transition: opacity ease 0.5;
+    }
+    .checkbox-wrapper-19 .check-box::before {
+      top: calc(var(--checkbox-height) * .72);
+      left: calc(var(--checkbox-height) * .41);
+      box-shadow: 0 0 0 calc(var(--checkbox-height) * .05) var(--background-color);
+      -moz-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+    }
+    .checkbox-wrapper-19 .check-box::after {
+      top: calc(var(--checkbox-height) * .37);
+      left: calc(var(--checkbox-height) * .05);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  
+    .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box,
+    .checkbox-wrapper-19 .check-box.checked {
+      border-color: #34b93d;
+    }
+    .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::after,
+    .checkbox-wrapper-19 .check-box.checked::after {
+      height: calc(var(--checkbox-height) / 2);
+      -moz-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+      -o-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+      -webkit-animation: dothabottomcheck-19 0.2s ease 0s forwards;
+      animation: dothabottomcheck-19 0.2s ease 0s forwards;
+    }
+    .checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::before,
+    .checkbox-wrapper-19 .check-box.checked::before {
+      height: calc(var(--checkbox-height) * 1.2);
+      -moz-animation: dothatopcheck-19 0.4s ease 0s forwards;
+      -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
+      -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
+      animation: dothatopcheck-19 0.4s ease 0s forwards;
+    }
+    .form__label {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+      margin-left: 2rem;
+      display: block;
+      transition: all 0.3s;
+      transform: translateY(0rem);
+    }
+    
+    .form__input {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      font-size: 1.2rem;
+      margin: 0 auto;
+      padding: 1rem;
+      border-radius: .5rem;
+      background-color: rgb(255, 255, 255);
+      border: none;
+      width: 90%;
+      display: block;
+      border-bottom: 0.3rem solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .form__input:placeholder-shown + .form__label {
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transform: translateY(-4rem);
+      transform: translateY(-4rem);
+      font-family: 'BW Gradual Bold';
+    }
+  
+  

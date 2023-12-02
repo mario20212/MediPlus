@@ -1,0 +1,30 @@
+{
+  "name": "mediplus",
+  "version": "1.0.0",
+  "description": "Clinic Based Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mario20212/MediPlus.git"
+  },
+  "author": "AMYBO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mario20212/MediPlus/issues"
+  },
+  "homepage": "https://github.com/mario20212/MediPlus#readme",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.2",
+    "path": "^0.12.7"
+  }
+}
