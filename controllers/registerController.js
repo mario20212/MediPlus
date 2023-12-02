@@ -1,17 +1,20 @@
 const bcrypt = require('bcrypt');
-const { query } = require('../database/MySQL-connection');
+const UserModel = require('../models/UserModel');
 
 class UserController {
+  constructor() {
+    this.userModel = new UserModel();
+  }
+
   async registerNewUser(req, res) {
     const signupData = req.body;
     if (Object.keys(signupData).length === 3) {
       try {
-        const rows = await query('SELECT * FROM user_info WHERE email = ?', [signupData.email]);
-        if (rows && rows.length > 0) {
+        const user = await this.userModel.getUserByEmail(signupData.email);
+        if (user) {
           res.send({ success: "email is already used" });
         } else {
-          const hashedPwd = await bcrypt.hash(signupData.password, 10);
-          await query('INSERT INTO user_info (username, email, password) VALUES (?, ?, ?)', [signupData.username, signupData.email, hashedPwd]);
+          await this.userModel.createUser(signupData.username, signupData.email, signupData.password);
           console.log(`New user ${signupData.username} created!`);
           res.send({ success: "true", data: signupData });
         }
@@ -25,12 +28,11 @@ class UserController {
   }
 
   async loginUser(req, res) {
-    console.log('Here right now')
     const loginData = req.body;
     try {
-      const user = await query('SELECT * FROM user_info WHERE email = ?', [loginData.email]);
-      if (user && user.length > 0) {
-        const isPasswordMatch = await bcrypt.compare(loginData.password, user[0].password);
+      const user = await this.userModel.getUserByEmail(loginData.email);
+      if (user) {
+        const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
         if (isPasswordMatch) {
           res.send({ success: "true", data: user });
         } else {
