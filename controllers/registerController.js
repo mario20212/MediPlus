@@ -31,6 +31,7 @@ class UserController {
     const loginData = req.body;
     try {
       const user = await this.userModel.getUserByEmail(loginData.email);
+      console.log(user);
       if (user) {
         const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
         if (isPasswordMatch) {

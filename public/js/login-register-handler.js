@@ -39,7 +39,7 @@ $(document).ready(() => {
   
         $.ajax({
           type: 'POST',
-          url: '/register',
+          url: '/signinup/login',
           data: loginData,
           success: (response) => {
             console.log(response)
@@ -130,7 +130,7 @@ $(document).ready(() => {
   
         $.ajax({
           type: 'POST',
-          url: '/register',
+          url: '/signinup/register',
           data: signupData,
           success: (response) => {
             if (response.success!=="true") {
