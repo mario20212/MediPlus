@@ -42,14 +42,13 @@ $(document).ready(() => {
           url: '/signinup/login',
           data: loginData,
           success: (response) => {
-            console.log(response)
             if (response.success!=="true") {
               $('#password_error_si').text(response.success);
             }
             else{
               sessionStorage.setItem('ongo', response.success);
-              sessionStorage.setItem('username', response.data[0].username);
-              sessionStorage.setItem('email', response.data[0].email);
+              sessionStorage.setItem('username', response.data.username);
+              sessionStorage.setItem('email', response.data.email);
               window.location.replace('/')
             }
           },
@@ -139,7 +138,7 @@ $(document).ready(() => {
             else{
             
               sessionStorage.setItem('ongo', response.success);
-              sessionStorage.setItem('username', response.data.username);
+              sessionStorage.setItem('username', response.data.user.username);
               sessionStorage.setItem('email', response.data.email);
               window.location.replace('/')
             }
