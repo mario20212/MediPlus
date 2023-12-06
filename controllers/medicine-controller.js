@@ -1,8 +1,11 @@
 const axios = require('axios');
+const MedicineModel = require('../models/MedicineModel');
+const apiKey = 'c09d273a61msh9e15c25b8e896b7p12bbb0jsn940198a20192';
+
 
 class MedicineController {
-  constructor(apiKey) {
-    this.apiKey = apiKey;
+  constructor() {
+    this.medModel = new MedicineModel();
   }
 
   async medDisplay(req, res) {
@@ -13,7 +16,7 @@ class MedicineController {
       url: 'https://drug-info-and-price-history.p.rapidapi.com/1/druginfo',
       params: { drug: query },
       headers: {
-        'X-RapidAPI-Key': this.apiKey,
+        'X-RapidAPI-Key': apiKey,
         'X-RapidAPI-Host': 'drug-info-and-price-history.p.rapidapi.com',
       },
     };
@@ -55,6 +58,15 @@ class MedicineController {
       res.status(500).render('404', {
         message: 'No drug/medicine found for the provided search, try again later!',
       });
+    }
+  }
+  async getMedStats() {
+    try {
+      const rowCount = await this.medModel.getRowCount();
+      return rowCount;
+    } catch (error) {
+      console.error('Error getting number of medicines:', error.message);
+      throw new Error('An error occurred while fetching the number of medicines.');
     }
   }
 }

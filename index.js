@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use(function(req, res, next) {
     res.locals.username = req.session.username;
+    res.locals.isAdmin = true;
     next();
 });
 
