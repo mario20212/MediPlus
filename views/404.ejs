@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
 		<!-- Title -->
-		<title>Drug Not Found</title>
+		<title><%= title %></title>
 		<!-- Favicon -->
         <link rel="icon" href="img/favicon.png">
 		
@@ -67,7 +67,7 @@
 					<div class="col-lg-6 offset-lg-3 col-12">
 						<!-- Error Inner -->
 						<div class="error-inner">
-							<h1>400<span><%=message%></span></h1><br>
+							<h1><%=errcode%><span><%=message%></span></h1><br>
 						</div>
 						<!--/ End Error Inner -->
 					</div>

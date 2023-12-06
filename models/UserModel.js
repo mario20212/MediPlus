@@ -7,9 +7,9 @@ class UserModel {
     return rows[0];
   }
 
-  async createUser(username, email, password) {
+  async createUser(username, email, password, isAdmin) {
     const hashedPwd = await bcrypt.hash(password, 10);
-    await query('INSERT INTO user_info (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPwd]);
+    await query('INSERT INTO user_info (username, email, password, isAdmin) VALUES (?, ?, ?, ?)', [username, email, hashedPwd, isAdmin]);
   }
 }
 

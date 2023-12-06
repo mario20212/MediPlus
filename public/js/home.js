@@ -15,6 +15,7 @@ function logout()
 sessionStorage.removeItem('ongo');
 sessionStorage.removeItem('username');
 sessionStorage.removeItem('email');
+sessionStorage.removeItem('isAdmin');
 window.location.replace("/");
 }
 function creatschdule()
