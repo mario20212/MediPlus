@@ -43,7 +43,7 @@
 
 
 
-    <div class="container">
+    <div class="container" style="margin-top: 5%;">
         <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6 text-center">
         <h2 class="display-18 display-md-16 display-lg-14 mb-0">Time Schedule-Table</h2>
         </div>
@@ -164,6 +164,54 @@
         </div>
         </div>
         </div>
+
+
+
+        
+
+
+
+        <div class="med-container">
+            <h2>Medication Schedule</h2>
+            <form class="med-form">
+              <label for="medicineName" class="med-label">Medicine Name</label>
+              <input type="text" id="medicineName" name="medicineName" class="med-input" required>
+        
+              <label for="medicineType" class="med-label">Medicine Type</label>
+              <select id="medicineType" name="medicineType" class="med-select" required>
+                <option value="pills">Pills</option>
+                <option value="liquid">Liquid Medications</option>
+                <option value="injections">Injections</option>
+              </select>
+        
+              <label for="whenToTake" class="med-label">When to Take</label>
+              <div class="med-checkbox-group">
+                <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="beforeBreakfast">
+                <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
+        
+                <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="afterBreakfast">
+                <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
+        
+                <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="beforeLunch">
+                <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
+        
+                <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="afterLunch">
+                <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
+        
+                <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="beforeDinner">
+                <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
+              </div>
+
+                <!-- Add more options as needed -->
+              </select>
+        
+              <label for="dose" class="med-label">Dose</label>
+              <input type="text" id="dose" name="dose" class="med-input" required>
+        
+              <button type="submit" class="med-button">Add Medicine</button>
+            </form>
+          </div>
+          
 
 
    

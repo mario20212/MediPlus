@@ -1,6 +1,6 @@
 body{margin-top:20px;}
 .schedule-table table thead tr {
-background: #86d4f5;
+background: #044c6b;
 }
 .schedule-table table thead th {
 padding: 25px 50px;
@@ -90,11 +90,11 @@ transition: all 0.3s linear 0s;
 position: absolute;
 left: 50%;
 top: 50%;
-width: 120%;
-height: 120%;
-transform: translate(-50%, -50%) scale(0.8);
+width: 97%;
+height: 97%;
+transform: translate(-60%, -60%) scale(0.8);
 z-index: 99;
-background: #86d4f5;
+background: #2ea1d2;
 border-radius: 0.25rem;
 padding: 25px 0;
 visibility: hidden;
@@ -107,9 +107,9 @@ visibility: visible;
 opacity: 1;
 }
 .schedule-table table tbody td.day:hover {
-background: #86d4f5;
+background: #5a5a5a;
 color: #fff;
-border: 1px solid #86d4f5;
+border: 1px solid #5a5a5a;
 }
 @media screen and (max-width: 1199px) {
 .schedule-table {
@@ -179,3 +179,102 @@ font-size: 15px;
 min-width: 135px;
 }
 }
+
+
+
+
+
+
+
+
+
+.med-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.med-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.med-label {
+  width: 100%;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.med-input, .med-select {
+  width: calc(33.33% - 10px);
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.med-checkbox-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.med-checkbox {
+  display: none;
+}
+
+.med-checkbox-label {
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.med-checkbox:checked + .med-checkbox-label {
+  background-color: #0b6e98;
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.med-button {
+  background-color: #044c6b;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.med-button:hover {
+  background-color: #044c6b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
