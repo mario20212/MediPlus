@@ -63,10 +63,13 @@ class MedicineController {
   async getMedStats() {
     try {
       const rowCount = await this.medModel.getRowCount();
-      return rowCount;
+      const latestMedicine = await this.medModel.getLatestMedicine();
+      const latestNineMeds = await this.medModel.getFirstNineMedicines();
+      console.log(latestNineMeds)
+      return { rowCount, latestMedicine, latestNineMeds };
     } catch (error) {
-      console.error('Error getting number of medicines:', error.message);
-      throw new Error('An error occurred while fetching the number of medicines.');
+      console.error('Error getting statistics:', error.message);
+      throw new Error('An error occurred while fetching the statistics.');
     }
   }
 }

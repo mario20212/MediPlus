@@ -9,10 +9,10 @@ const userController = new UserController();
 
 router.get('/', isAdminMiddleware, async (req, res) => {
   try {
-    const rowCount = await medicineController.getMedStats();
+    const { rowCount, latestMedicine, latestNineMeds } = await medicineController.getMedStats();
     const userCount = await userController.getUserStats();
 
-    res.render('dashboard', { rowCount, userCount });
+    res.render('dashboard', { rowCount, userCount, latestMedicine, latestNineMeds });
   } catch (error) {
     console.error('Error in dashboard route:', error.message);
     res.render('404', { message: 'An error occurred while loading the dashboard.' , title: 'Error getting statistics', errcode: '405'});
@@ -20,4 +20,5 @@ router.get('/', isAdminMiddleware, async (req, res) => {
 });
 
 module.exports = router;
+
 

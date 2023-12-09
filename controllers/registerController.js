@@ -40,6 +40,7 @@ class UserController {
         const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
         if (isPasswordMatch) {
           req.session.isAdmin = user.isAdmin === 1;
+          console.log(req.session.isAdmin)
           res.send({ success: "true", data: user });
         } else {
           res.send({ success: "Incorrect Email/Password" });

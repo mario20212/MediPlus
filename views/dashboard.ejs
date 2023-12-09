@@ -43,7 +43,7 @@
             <div class="val-box">
                 <i class="fas fa-acorn"></i>
                 <div>
-                    <h3>215,542</h3>
+                    <h3><%=latestMedicine%></h3>
                     <span>Most Recent Review</span>
                 </div>
             </div>
@@ -61,173 +61,33 @@
                 <thead>
                     <tr>
                         <td>Name</td>
-                        <td>Status</td>
-                        <td>Role</td>
-                        <td></td>
+                        <td>Composition</td>
+                        <td>Uses</td>
+                        <td>Side Effects</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>John Doe</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Oscar Rhys</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>George Reece</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Thomas Joe</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Charlie Kyle</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Jacob Jacob</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Harry Callum</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Jack Connor</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                            <!-- <a href="#">Edit</a> -->
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
-
-                    <tr>
-                        <td class="people">
-                            <div class="people-de">
-                                <h5>Oliver Jake</h5>
-                                <p>john@example.com
-                                </p>
-                            </div>
-                        </td>
-                        <td class="active">
-                            <p>Active</p>
-                        </td>
-                        <td class="role">
-                            <p>Owner</p>
-                        </td>
-                        <td><a class="edit" href="#">Edit</a></td>
-                    </tr>
+                    <% for (const medicine of latestNineMeds) { %>
+                        <tr>
+                            <td class="people">
+                                <div class="people-de">
+                                    <h5><%= medicine['Medicine Name'] %></h5>
+                                    <p><%= medicine.Manufacturer %></p>
+                                </div>
+                            </td>
+                            <td>
+                                <h5><%= medicine.Composition %></h5>
+                            </td>
+                            <td>
+                                <h5><%= medicine.Uses %></h5>
+                            </td>
+                            <td>
+                                <h5><%= medicine.Side_effects %></h5>
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
+                
             </table>
         </dir>
     </section>
