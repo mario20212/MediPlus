@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <h3 class="i-name">Manage Users</h3>
 <dir class="board">
     <table width="100%">
@@ -37,7 +38,7 @@
                     </td>
                     <td>
                         <h5>
-                            
+                            <a href="#" style="text-decoration: none;" class="delete-user" data-user-email="<%= user.email %>">Delete</a>
                         </h5>
                     </td>
                 </tr>
@@ -46,3 +47,27 @@
         
     </table>
 </dir>
+
+<script>
+    $(document).ready(function () {
+      const deleteUrl = '/admin/manage-users-content';
+  
+      $(document).on('click', '.delete-user', function (e) {
+        e.preventDefault();
+  
+        const userEmail = $(this).data('user-email');
+  
+        $.ajax({
+          url: `${deleteUrl}/deleteUser/${userEmail}`,
+          method: 'DELETE',
+          success: function (response) {
+            $(`tr[data-user-email="${userEmail}"]`).remove();
+            console.log('User deleted successfully');
+          },
+          error: function (error) {
+            console.error('Error deleting user:', error);
+          }
+        });
+      });
+    });
+</script>

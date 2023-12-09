@@ -77,6 +77,28 @@ class UserController {
       throw new Error('An error occurred while fetching user stats');
     }
   }
+
+  async deleteUser(req, res) {
+    console.log('in controller')
+    const userEmail = req.params.userEmail;
+
+    try {
+      const userToDelete = await this.userModel.getUserByEmail(userEmail);
+      console.log('userToDelete:', userToDelete)
+      if (!userToDelete) {
+        return {success: false, message: 'User not found'};
+      }
+
+      const result = await this.userModel.deleteUserByEmail(userEmail);
+      console.log(result);
+
+      console.log(`User with email ${userEmail} deleted successfully`);
+      return  { success: true, message: 'User deleted successfully' };
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+      return { success: false, message: 'error occurred while in controller deleting user'}
+    }
+  }
   
 }
 
