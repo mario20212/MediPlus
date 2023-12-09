@@ -37,6 +37,22 @@ class UserModel {
       throw error;
     }
   }
+  async deleteUserByEmail(email) {
+    console.log('in model')
+    try {
+      const result = await query('DELETE FROM user_info WHERE email = ?', [email]);
+
+      if (!result || typeof result !== 'object') {
+        throw new Error('Unexpected response from the database for delete user');
+      }
+
+      console.log(`User with email ${email} deleted successfully`);
+      return result;
+    } catch (error) {
+      console.error('Error deleting user by email:', error.message);
+      throw error;
+    }
+  }
 }
 
 module.exports = UserModel;

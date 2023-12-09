@@ -33,6 +33,18 @@ router.get('/manage-users-content', async (req, res) => {
   }
 });
 
+router.delete('/manage-users-content/deleteUser/:userEmail', async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const {success, message} = await userController.deleteUser(req, res);
+
+    res.status(200).json({ message: message, success: success });
+  } catch (error) {
+    console.error('Error deleting user:', error.message);
+    res.status(500).json({ error: 'An error occurred while deleting the user'});
+  }
+})
+
 
 module.exports = router;
 
