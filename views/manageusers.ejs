@@ -1,0 +1,48 @@
+<h3 class="i-name">Manage Users</h3>
+<dir class="board">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Password</td>
+                <td>Role</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% allUsers.forEach(user => { %>
+                <tr>
+                    <td class="people">
+                        <div class="people-de">
+                            <h5>
+                                <%= user.username %>
+                            </h5>
+                        </div>
+                    </td>
+                    <td>
+                        <h5>
+                            <%= user.email %>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            <%= user.password %>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            <%= user.role %>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            
+                        </h5>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+        
+    </table>
+</dir>

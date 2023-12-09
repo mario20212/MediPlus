@@ -54,16 +54,30 @@ class UserController {
     }
   }
 
-  async getUserStats(req, res){
-    try{
-    const userCount = this.userModel.getUserCount();
-    return userCount;
-    } catch (error){
-      console.error('Error getting number of users:', error.message);
-      throw new Error('An error occurred while fetching the number of users');
+  async getUserStats() {
+    try {
+      const userCount = await this.userModel.getUserCount();
+      let allUsers = await this.userModel.getAllUsers();
+      allUsers = allUsers.map(user => {
+        return {
+          ...user,
+          role: user.isAdmin === 1 ? 'Admin' : 'User'
+        };
+      });
+  
+      console.log('User count:', userCount);
+      console.log('All users:', allUsers);
+  
+      return {
+        userCount,
+        allUsers
+      };
+    } catch (error) {
+      console.error('Error getting user stats:', error.message);
+      throw new Error('An error occurred while fetching user stats');
     }
-
   }
+  
 }
 
 module.exports = UserController;

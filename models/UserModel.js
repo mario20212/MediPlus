@@ -28,6 +28,15 @@ class UserModel {
       throw error;
     }
   }
+  async getAllUsers() {
+    try {
+      const rows = await query('SELECT * FROM user_info');
+      return rows;
+    } catch (error) {
+      console.error('Error getting all users:', error.message);
+      throw error;
+    }
+  }
 }
 
 module.exports = UserModel;
