@@ -64,40 +64,16 @@
         <tbody>
         <tr>
             <td class="day">Pills</td>
-            <td class="active">
-            <h4>Weight Loss</h4>
-            <p>10 am - 11 am</p>
-            <div class="hover">
-            <h4>Weight Loss</h4>
-            <p>10 am - 11 am</p>
-            <span>Wayne Ponce</span>
-            </div>
-            </td>
-            <td></td>
-            <td class="active">
-            <h4>Yoga</h4>
-            <p>03 pm - 04 pm</p>
-            <div class="hover">
-            <h4>Yoga</h4>
-            <p>03 pm - 04 pm</p>
-            <span>Francisco Watt</span>
-            </div>
-            </td>
-            <td class="active">
-            <h4>Boxing</h4>
-            <p>05 pm - 06 pm</p>
-            <div class="hover">
-            <h4>Boxing</h4>
-            <p>05 pm - 046am</p>
-            <span>Charles King</span>
-            </div>
-            </td>
-            <td></td>
+            <td id="pills1"></td>
+            <td id="pills2"></td>
+            <td id="pills3"></td>
+            <td id="pills4"></td>
+            <td id="pills5"></td>
         </tr>
         <tr>
             <td class="day">Liquid Medications</td>
-            <td></td>
-            <td class="active">
+            <td id="liquidbb"></td>
+            <td id="liquidab" class="active">
             <h4>Cycling</h4>
             <p>11 am - 12 pm</p>
             <div class="hover">
@@ -106,7 +82,7 @@
             <span>Tabitha Potter</span>
             </div>
             </td>
-            <td class="active">
+            <td id="liquidbl" class="active">
             <h4>Karate</h4>
             <p>03 pm - 05 pm</p>
             <div class="hover">
@@ -115,8 +91,8 @@
             <span>Lester Gray</span>
             </div>
             </td>
-            <td></td>
-            <td class="active">
+            <td id="liquidal"></td>
+            <td id="liquidbd" class="active">
             <h4>Crossfit</h4>
             <p>07 pm - 08 pm</p>
             <div class="hover">
@@ -128,7 +104,7 @@
         </tr>
         <tr>
             <td class="day">Injections</td>
-            <td class="active">
+            <td id="injectionsbb" class="active">
             <h4>Spinning</h4>
             <p>10 am - 11 am</p>
             <div class="hover">
@@ -137,9 +113,9 @@
             <span>Mary Cass</span>
             </div>
             </td>
-            <td></td>
-            <td></td>
-            <td class="active">
+            <td id="injectionsab"></td>
+            <td id="injectionsbl"></td>
+            <td id="injectionsal" class="active">
             <h4>Bootcamp</h4>
             <p>05 pm - 06 pm</p>
             <div class="hover">
@@ -148,7 +124,7 @@
             <span>Brenda Mastropietro</span>
             </div>
             </td>
-            <td class="active">
+            <td id="injectionsbd" class="active">
             <h4>Boxercise</h4>
             <p>07 pm - 08 pm</p>
             <div class="hover">
@@ -186,19 +162,19 @@
         
               <label for="whenToTake" class="med-label">When to Take</label>
               <div class="med-checkbox-group">
-                <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="beforeBreakfast">
+                <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="1beforeBreakfast">
                 <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
         
-                <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="afterBreakfast">
+                <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="2afterBreakfast">
                 <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
         
-                <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="beforeLunch">
+                <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="3beforeLunch">
                 <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
         
-                <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="afterLunch">
+                <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="4afterLunch">
                 <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
         
-                <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="beforeDinner">
+                <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="5beforeDinner">
                 <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
               </div>
 
@@ -208,40 +184,20 @@
               <label for="dose" class="med-label">Dose</label>
               <input type="text" id="dose" name="dose" class="med-input" required>
         
-              <button type="submit" class="med-button">Add Medicine</button>
+              <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
             </form>
           </div>
           
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
    
     <%- include("./partials/footer.ejs") %>
 
     
 </body>
 </html>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+  </script>
 <script src="./js/suggestions.js"></script>
 <script src="./js/search.js"></script>
 
@@ -251,7 +207,6 @@
 
 
 <!-- jquery Min JS -->
-<script src="js/jquery.min.js"></script>
 <script src="js/schedule.js"></script>
 <script src="js/main.js"></script>
 
