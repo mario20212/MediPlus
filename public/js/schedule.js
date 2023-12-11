@@ -24,6 +24,7 @@ function addMedicine() {
     }
     
     var dose = document.getElementById('dose').value;
+   
 
     for(var i=0;i<whenToTakeValues.length;i++)
     {
@@ -31,25 +32,15 @@ function addMedicine() {
         var id = medicineType + number;
         console.log(id);
         var pElement = document.createElement('p');
-        pElement.textContent = medicineName +" "+dose+"pills";
+        pElement.textContent = medicineName +" Dose:"+dose;
         var existingElement = document.getElementById(id);
         if (existingElement){
         existingElement.classList.remove('active');
         }
+        existingElement.classList.add('active');
         var containerElement = document.createElement('div');
-        containerElement.id = id;
-        containerElement.classList.add('active');
         containerElement.appendChild(pElement);
-
-
-
-
-
-
-
-
-
-
+        existingElement.append(containerElement);
     }
 
  
@@ -59,7 +50,6 @@ function addMedicine() {
    
     
 
-    // // Append the container to the document body or another desired location
-    // document.body.appendChild(containerElement);
+    
 
   }
