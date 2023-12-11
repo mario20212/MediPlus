@@ -1,0 +1,50 @@
+<!-- Assuming allMedicines is passed to the view from the server -->
+<% const displayLimit = 20; %>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<h3 class="i-name">Manage Medicine</h3>
+<dir class="board">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Medicine Name</td>
+                <td>Composition</td>
+                <td>Uses</td>
+                <td>Side Effects</td>
+                <td>Image URL</td>
+                <td>Manufacturer</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < Math.min(allMedicines.length, displayLimit); i++) { %>
+                <tr>
+                    <td>
+                        <h5><%= allMedicines[i]['Medicine Name'] %></h5>
+                    </td>
+                    <td>
+                        <h5><%= allMedicines[i].Composition %></h5>
+                    </td>
+                    <td>
+                        <h5><%= allMedicines[i].Uses %></h5>
+                    </td>
+                    <td>
+                        <h5><%= allMedicines[i].Side_effects %></h5>
+                    </td>
+                    <td>
+                        <img src="<%= allMedicines[i]['Image URL'] || 'placeholder-image-url.jpg' %>" alt="Medicine Image" width="50">
+                    </td>
+                    <td>
+                        <h5><%= allMedicines[i].Manufacturer %></h5>
+                    </td>
+                    <td>
+                        <h5><%= allMedicines[i]['Excellent Review %'] !== 0 ? 'In Stock' : 'Not in Stock' %></h5>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</dir>
+
+<script>
+</script>

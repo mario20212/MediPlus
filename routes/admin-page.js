@@ -33,6 +33,16 @@ router.get('/manage-users-content', async (req, res) => {
   }
 });
 
+router.get('/manage-medicine-content', async (req, res) => {
+  try {
+    const { allMedicines } = await medicineController.getMedStats();
+    res.render('managemedicine', { allMedicines });
+  } catch (error) {
+    console.error('Error in manage medicine route:', error.message);
+    res.render('404', { message: 'An error occurred while loading the manage medicine page.', title: 'Error getting medicine stats', errcode: '405' });
+  }
+});
+
 router.delete('/manage-users-content/deleteUser/:userEmail', async (req, res) => {
   try {
     const userEmail = req.params.userEmail;

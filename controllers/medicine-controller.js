@@ -65,8 +65,11 @@ class MedicineController {
       const rowCount = await this.medModel.getRowCount();
       const latestMedicine = await this.medModel.getLatestMedicine();
       const latestNineMeds = await this.medModel.getFirstNineMedicines();
-      console.log(latestNineMeds)
-      return { rowCount, latestMedicine, latestNineMeds };
+      const allMedicines = await this.medModel.getAllMedicines();
+
+      console.log(latestNineMeds);
+
+      return { rowCount, latestMedicine, latestNineMeds, allMedicines };
     } catch (error) {
       console.error('Error getting statistics:', error.message);
       throw new Error('An error occurred while fetching the statistics.');
