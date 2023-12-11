@@ -53,6 +53,20 @@ class MedicineModel {
       throw error;
     }
   }
+  async getAllMedicines() {
+    try {
+      const result = await query('SELECT * FROM ??', [tableName]);
+
+      if (!Array.isArray(result)) {
+        throw new Error(`Unexpected response from the database for table ${tableName}`);
+      }
+      
+      return result;
+    } catch (error) {
+      console.error('Error getting all medicines:', error.message);
+      throw error;
+    }
+  }
   
 }
 
