@@ -38,6 +38,7 @@ app.use('/blogs', require('./routes/blogs.js'))
 app.use('/contact', require('./routes/contact.js'))
 app.use('/add_doctor', require('./routes/add_doctor.js'))
 app.use('/addmedicine', require('./routes/addmedicine.js'))
+app.use('/cart', require('./routes/cart.js'))
 app.use('/admin', require('./routes/admin-page.js'))
 
 app.listen(8080, () => {
