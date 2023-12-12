@@ -3,7 +3,7 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.use(function(req, res, next) {
     res.locals.username = req.session.username;
-    res.locals.isAdmin = true;
+    res.locals.isAdmin = req.session.isAdmin;
     next();
 });
 

@@ -22,50 +22,87 @@
     <%- include("./partials/side-panel.ejs") %>
         <section id="interface">
             <%- include("./partials/search-bar.ejs") %>
-                <div id="dynamic-content"></div>
-        </section>
-        <script>
-            $(document).ready(function () {
-                // Load default content on page load
-                $('#dynamic-content').load('/admin/statistics', function () {
-                    // Set active class and adjust left border for the default content
-                    setActive('#statistics-link');
-                });
-        
-                // Function to set active class and adjust left border on clicked link
-                function setActive(linkId) {
-                    $('.items li').removeClass('active').css('border-left', 'none');
-                    $(linkId).addClass('active').css('border-left', '4px solid #fff');
-                }
-        
-                // Function to handle link clicks and load content
-                function handleLinkClick(linkId, contentUrl) {
-                    $(linkId).click(function (e) {
-                        e.preventDefault();
-                        if (!$('#dynamic-content').hasClass(linkId.substring(1) + '-loaded')) {
-                            $('#dynamic-content').load(contentUrl, function () {
-                                // Set active class and adjust left border for the clicked link
-                                setActive(linkId);
-                            });
-                        }
-                    });
-                }
-        
-                // Define links and their corresponding content URLs
-                var links = [
-                    { id: '#statistics-link', url: '/admin' },
-                    { id: '#manage-users-link', url: '/admin/manage-users-content' },
-                    { id: '#manage-medicine-link', url: '/admin/manage-medicine-content' }
-                ];
-        
-                // Attach click handlers to links
-                links.forEach(function (link) {
-                    handleLinkClick(link.id, link.url);
-                });
-            });
-        </script>
-        
-          
+                <div id="dynamic-content">
+                    <h3 class="i-name">
+                        Dashboard
+                    </h3>
+                    
+                    <div class="values">
+                        <div class="val-box">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3>
+                                    <%=userCount%>
+                                </h3>
+                                <span>New Users</span>
+                            </div>
+                        </div>
+                        <div class="val-box">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div>
+                                <h3>
+                                    <%=rowCount%>
+                                </h3>
+                                <span>Total Medicine/s</span>
+                            </div>
+                        </div>
+                        <div class="val-box">
+                            <i class="fas fa-acorn"></i>
+                            <div>
+                                <h3>
+                                    <%=latestMedicine%>
+                                </h3>
+                                <span>Most Recent Review</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <dir class="board">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Composition</td>
+                                    <td>Uses</td>
+                                    <td>Side Effects</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (const medicine of latestNineMeds) { %>
+                                    <tr>
+                                        <td class="people">
+                                            <div class="people-de">
+                                                <h5>
+                                                    <%= medicine['Medicine Name'] %>
+                                                </h5>
+                                                <p>
+                                                    <%= medicine.Manufacturer %>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h5>
+                                                <%= medicine.Composition %>
+                                            </h5>
+                                        </td>
+                                        <td>
+                                            <h5>
+                                                <%= medicine.Uses %>
+                                            </h5>
+                                        </td>
+                                        <td>
+                                            <h5>
+                                                <%= medicine.Side_effects %>
+                                            </h5>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                    
+                        </table>
+                    </dir>
+                </div>
+        </section>      
 </body>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
