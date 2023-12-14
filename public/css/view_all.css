@@ -8,9 +8,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: absolute;
-    bottom: -150px; /* Adjust the value to your preference */
+    bottom: -150px; 
+    left: 350px;
 }
 
 .view-all-button:hover {
-    background-color: #1b6bf5; /* Adjust the color for the hover effect if needed */
+    background-color: #1b6bf5; 
 }
