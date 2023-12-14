@@ -41,7 +41,7 @@ app.use('/addmedicine', require('./routes/addmedicine.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/admin', require('./routes/admin-page.js'))
 app.use('/system', require('./routes/system.js'))
-
+app.use('/view_all',require('./routes/view_all.js'))
 app.listen(8080, () => {
     console.log("Server is running.....");
 });
