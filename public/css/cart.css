@@ -92,17 +92,16 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 0px;
-    height: 0px;
-    background-color: #ff0000;
-    color: #fff;
+    width: 30px;
+    height: 30px;
+    color: #fffdfd;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    left: 100px;
-    margin-left: 120px;
-    margin-top: 13px;
+    left: 70px;
+    margin-left: 20px;
+    margin-top: 15px;
 }
 
 .delete-icon {
