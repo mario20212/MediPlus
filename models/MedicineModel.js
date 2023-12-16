@@ -67,6 +67,21 @@ class MedicineModel {
       throw error;
     }
   }
+
+  async getMedicineById(medicineId) {
+    try {
+      const [result] = await query('SELECT * FROM ?? WHERE id = ?', [tableName, medicineId]);
+  
+      console.log('Query Response:', result);
+  
+      const medicine = result;
+      return medicine;
+    } catch (error) {
+      console.error(`Error getting medicine with ID ${medicineId}:`, error.message);
+      throw error;
+    }
+  }
+  
   async schedule()
   {
     

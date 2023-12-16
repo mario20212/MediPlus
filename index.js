@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/home.js'))
 app.use('/signinup', require('./routes/handleUser.js'))
 app.use('/search', require('./routes/search.js'))
-app.use('/medicine', require('./routes/medicine-display.js'))
+app.use('/product', require('./routes/product.js'))
 app.use('/schedule', require('./routes/schedule.js'))
 app.use('/blogs', require('./routes/blogs.js'))
 app.use('/contact', require('./routes/contact.js'))
