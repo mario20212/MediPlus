@@ -3,7 +3,6 @@ var activeListItem = document.querySelector('li.active');
 
 // Remove the "active" class
 activeListItem.classList.remove('active');
-var schedule=[1,2,3];
 
 
 
@@ -48,6 +47,7 @@ function addMedicine() {
 
   function savechanges()
   {
+    let schedule=["1","2","3"];
     $(document).ready(() => {
     $.ajax({
       type: 'POST',
