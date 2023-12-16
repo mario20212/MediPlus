@@ -3,6 +3,9 @@ var activeListItem = document.querySelector('li.active');
 
 // Remove the "active" class
 activeListItem.classList.remove('active');
+let email=sessionStorage.getItem("email");
+let schedule = { value: 5 };
+
 
 
 
@@ -44,14 +47,14 @@ function addMedicine() {
   }
 }
 
-function savechanges() {
-  let schedule = { value: 5 };
-  $.ajax({
-    type: 'POST',
-    url: '/schedule',
-    data: schedule,
-    success: (response) => {
-      console.log(response);
-    },
-  });
+  function savechanges() {
+  console.log(email)
+  // $.ajax({
+  //   type: 'POST',
+  //   url: '/schedule',
+  //   data: schedule,
+  //   success: (response) => {
+  //     console.log(response);
+  //   },
+  // });
 }

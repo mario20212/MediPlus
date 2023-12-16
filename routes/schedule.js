@@ -9,7 +9,6 @@ router.get('/', (req,res)=>{
 router.post('/', (req, res) => {
     const schedule = req.body;
     console.log(schedule);
-    res.send({ success: 'testing' });
 });  
 
 module.exports = router;
