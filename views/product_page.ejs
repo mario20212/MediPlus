@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Meta Tags -->
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="keywords" content="Site keywords here">
+            <meta name="description" content="">
+            <meta name='copyright' content=''>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Mediplus</title>
+            <base href="/">
+            <link rel="stylesheet" href="css/normalize.css">
+            <link rel="stylesheet" href="css/style.css">
+            <!-- <link rel="stylesheet" href="css/responsive.css">
+            <link rel="stylesheet" href="./css/fonts.css">
+            <link rel="stylesheet" href="./css/magnific-popup.css"> -->
+            <link rel="stylesheet" href="./css/med_product.css">
+            <link rel="icon" href="img/favicon.png">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <main class="med-container">
+        <div class="left-column">
+          <img data-image="red" class="active" src="<%=specificMedicine['Image URL'] %>" alt="">
+        </div>
+       
+        <div class="right-column">
+          <div class="product-description">
+            <span><%= specificMedicine.medicine_type %></span>
+            <h1><%= specificMedicine['Medicine Name'] %></h1>
+            <h3><%= specificMedicine.Manufacturer %></h3>
+            <h5 class="comp-title">Composition</h5>
+            <ul class="composition">
+              <% specificMedicine.CompositionArray.forEach(component => { %>
+                <li class="ingredient"><%= component %></li>
+              <% }) %>
+            </ul>
+            <h5 class="comp-title">Uses</h5>
+            <ul class="composition">
+              <% specificMedicine.UsesArray.forEach(use => { %>
+                <li class="ingredient"><%= use %></li>
+              <% }) %>
+            </ul>
+          </div>
+            <div class="schedule-config">
+              <a href="/schedule">Want to create a schedule with this medicine? Click here to try out</a>
+            </div>
+          <div class="product-price">
+            <span><%= specificMedicine.Price %> EGP</span>
+            <% if (specificMedicine.Quantity > 0) { %>
+              <a href="#" class="cart-btn">Add to cart</a>
+            <% } else { %>
+              <span class="out-of-stock" style="color: red;">Out of Stock</span>
+            <% } %>
+          </div>
+        </div>
+      </main>
+    <%- include("./partials/footer.ejs") %>
+</body>
+</html>
