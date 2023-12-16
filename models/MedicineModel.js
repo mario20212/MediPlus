@@ -82,6 +82,10 @@ class MedicineModel {
     }
   }
   
+  async schedule()
+  {
+    
+  }
   
 }
 

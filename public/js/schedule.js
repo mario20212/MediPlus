@@ -3,6 +3,8 @@ var activeListItem = document.querySelector('li.active');
 
 // Remove the "active" class
 activeListItem.classList.remove('active');
+var schedule=[1,2,3];
+
 
 
 
@@ -42,14 +44,21 @@ function addMedicine() {
         containerElement.appendChild(pElement);
         existingElement.append(containerElement);
     }
+  }
 
- 
+  function savechanges()
+  {
+    $(document).ready(() => {
+    $.ajax({
+      type: 'POST',
+      url: '/schedule',
+      data: schedule ,
+      success: (response) => {
+        
+      },
+    });
+  });
 
 
-
-   
-    
-
-    
 
   }
