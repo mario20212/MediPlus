@@ -8,14 +8,16 @@ router.get('/:medicineId', async (req, res) => {
     const medicineId = req.params.medicineId;
 
     try {
-        const specificMedicine = await medicineController.getMedicineById(medicineId);
-        console.log(specificMedicine);
-        res.render('product_page', { specificMedicine: specificMedicine });
+        const { medicine, relatedMedicines } = await medicineController.getMedicineById(medicineId);
+
+        console.log('testing here: ', relatedMedicines)
+
+        res.render('product_page', { medicine, relatedMedicines });
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Internal Server Error');
     }
 });
-
 
 module.exports = router;

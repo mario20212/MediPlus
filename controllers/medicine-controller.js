@@ -23,27 +23,31 @@ class MedicineController {
 
   async getMedicineById(medicineId) {
     try {
-      const medicine = await this.medModel.getMedicineById(medicineId);
+        const medicine = await this.medModel.getMedicineById(medicineId);
 
-      if (!medicine) {
-        console.error(`No medicine found with ID ${medicineId}`);
-        return null;
-      }
+        if (!medicine) {
+            console.error(`No medicine found with ID ${medicineId}`);
+            return null;
+        }
 
-      medicine.CompositionArray = medicine.Composition.split(' + ');
-      const usesRegex = /Treatment of (.*?)(?=(Treatment of|and|&|$))/g;
-      const matches = medicine.Uses.match(usesRegex);
+        medicine.CompositionArray = medicine.Composition.split(' + ');
+        const usesRegex = /Treatment of (.*?)(?=(Treatment of|and|&|$))/g;
+        const matches = medicine.Uses.match(usesRegex);
 
-      medicine.UsesArray = matches ? matches.map(use => use.trim()) : [];
+        medicine.UsesArray = matches ? matches.map(use => use.trim()) : [medicine.Uses];
 
-      medicine.Quantity = 0
+        const relatedMedicines = await this.medModel.getMedicinesByUses(medicine.Uses, medicine.id);
 
-      return medicine;
+        return { medicine, relatedMedicines }; 
+        
     } catch (error) {
-      console.error(`Error getting medicine with ID ${medicineId}:`, error.message);
-      throw new Error(`An error occurred while fetching details for medicine with ID ${medicineId}.`);
+        console.error(`Error getting medicine with ID ${medicineId}:`, error.message);
+        throw new Error(`An error occurred while fetching details for medicine with ID ${medicineId}.`);
     }
-  }
+}
+
+
+
 
 
 }

@@ -149,28 +149,21 @@
           <label for="dose" class="med-label">Dose</label>
           <input type="text" id="dose" name="dose" class="med-input" required>
 
-          <div class="fix">
-            <button type="button" class="med-button one1" onclick="addMedicine()">Add Medicine</button>
-            <button type="button" class="med-button fix margin12" onclick="savechanges()">Save Changes</button>
-          </div>
+          <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
         </form>
       </div>
-
-
-
-
-
 
 
       <%- include("./partials/footer.ejs") %>
 
 
-
   </body>
 
   </html>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
   <script src="./js/suggestions.js"></script>
   <script src="./js/search.js"></script>
 
@@ -179,70 +172,9 @@
 
 
 
-
-  <div class="med-container">
-    <h2>Medication Schedule</h2>
-    <form class="med-form">
-      <label for="medicineName" class="med-label">Medicine Name</label>
-      <input type="text" id="medicineName" name="medicineName" class="med-input" required>
-
-      <label for="medicineType" class="med-label">Medicine Type</label>
-      <select id="medicineType" name="medicineType" class="med-select" required>
-        <option value="pills">Pills</option>
-        <option value="liquid">Liquid Medications</option>
-        <option value="injections">Injections</option>
-      </select>
-
-      <label for="whenToTake" class="med-label">When to Take</label>
-      <div class="med-checkbox-group">
-        <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="1beforeBreakfast">
-        <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
-
-        <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="2afterBreakfast">
-        <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
-
-        <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="3beforeLunch">
-        <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
-
-        <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="4afterLunch">
-        <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
-
-        <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="5beforeDinner">
-        <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
-      </div>
-
-      <!-- Add more options as needed -->
-      </select>
-
-      <label for="dose" class="med-label">Dose</label>
-      <input type="text" id="dose" name="dose" class="med-input" required>
-
-      <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
-    </form>
-  </div>
-
-
-  <%- include("./partials/footer.ejs") %>
-
-
-</body>
-
-</html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-  </script>
-<script src="./js/suggestions.js"></script>
-<script src="./js/search.js"></script>
-
-
-
-
-
-
-<!-- jquery Min JS -->
-<script src="js/schedule.js"></script>
-<script src="js/main.js"></script>
+  <!-- jquery Min JS -->
+  <script src="js/schedule.js"></script>
+  <script src="js/main.js"></script>
 
 
 
