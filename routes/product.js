@@ -4,15 +4,15 @@ const MedicineController = require('../controllers/medicine-controller');
 
 const medicineController = new MedicineController();
 
-router.get('/:medicineId', async (req, res) => {
-    const { medicineId } = req.params;
+router.get('/:medicineId', async(req, res) => {
+    const medicineId = req.params.medicineId;
 
     try {
         const { medicine, relatedMedicines } = await medicineController.getMedicineById(medicineId);
+        // const option= await medicineController.getMedicineOptionsById(medicineId);
+        console.log('testing here: ', relatedMedicines)
 
-        console.log('Testing here:', relatedMedicines);
-
-        res.render('product_page', { medicine, relatedMedicines });
+        res.render('product_page', { medicine, relatedMedicines }); // options: option
 
     } catch (error) {
         console.error('Error processing the request:', error.message);

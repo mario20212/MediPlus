@@ -93,26 +93,34 @@ class MedicineModel {
       const queryString = 'SELECT * FROM ?? WHERE Uses LIKE ? AND id != ? LIMIT 8';
       const escapedValues = [tableName, `%${uses}%`, excludedId];
       const [result] = await query(queryString, escapedValues);
-    
+
       console.log(`Medicines with uses ${uses} excluding ID ${excludedId}:`, result);
-    
+
       return result;
     } catch (error) {
       console.error(`Error getting medicines by uses:`, error.message);
       throw error;
     }
   }
-  
 
-  
+  async getMedicineOptionsById(medicineId) {
+    try {
+      const optionsQuery = `
+      SELECT o.option_name, mo.value
+      FROM options o
+      INNER JOIN medicine_options mo ON o.id = mo.option_id
+      WHERE mo.medicine_id = ?;
+    `;
+
+      const result = await query(optionsQuery, [medicineId]);
+      return result;
+    } catch (error) {
+      console.error('Error retrieving medicine options:', error);
+      throw error;
+    }
+  }
 
 
-
-
-
-}
+  }
 
 module.exports = MedicineModel;
-
-
-
