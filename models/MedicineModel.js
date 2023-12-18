@@ -1,5 +1,5 @@
 const { query } = require('../database/MySQL-connection');
-const tableName = 'medicine_details';
+const tableName = 'mediplus.medicine_details';
 
 class MedicineModel {
   async getRowCount() {
@@ -91,7 +91,7 @@ class MedicineModel {
   async getMedicinesByUses(uses, excludedId) {
     try {
       const queryString = 'SELECT * FROM ?? WHERE Uses LIKE ? AND id != ? LIMIT 8';
-      const escapedValues = [tableName, uses, excludedId];
+      const escapedValues = [tableName, `%${uses}%`, excludedId];
       const [result] = await query(queryString, escapedValues);
     
       console.log(`Medicines with uses ${uses} excluding ID ${excludedId}:`, result);
