@@ -89,3 +89,4 @@ class cart {
 
 
 }
+module.exports = cart;

@@ -1,50 +1,89 @@
-<!-- Assuming allMedicines is passed to the view from the server -->
-<% const displayLimit = 20; %>
+<% const displayLimit = 20 %>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <%- include("./partials/side-panel.ejs") %>
+    <section id="interface">
+        <%- include("./partials/search-bar.ejs") %>
+            <div id="dynamic-content">
+                <h3 class="i-name">Manage Medicine</h3>
+                <dir class="board">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <td>Medicine Name</td>
+                                <td>Medicine Type</td>
+                                <td>Composition</td>
+                                <td>Uses</td>
+                                <td>Side Effects</td>
+                                <td>Image</td>
+                                <td>Manufacturer</td>
+                                <td>Price</td>
+                                <td>Quantity</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < Math.min(allMedicines.length, displayLimit); i++) { %>
+                                <tr>
+                                    <td>
+                                        <h5><%= allMedicines[i]['Medicine Name'] %></h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].medicine_type %></h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Composition %></h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Uses %></h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Side_effects %></h5>
+                                    </td>
+                                    <td>
+                                        <img src="<%= allMedicines[i]['Image URL'] || 'placeholder-image-url.jpg' %>"
+                                            alt="Medicine Image" width="50">
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Manufacturer %></h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Price %> EGP</h5>
+                                    </td>
+                                    <td>
+                                        <h5><%= allMedicines[i].Quantity %></h5>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </dir>
+            </div>
+    </section>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<h3 class="i-name">Manage Medicine</h3>
-<dir class="board">
-    <table width="100%">
-        <thead>
-            <tr>
-                <td>Medicine Name</td>
-                <td>Composition</td>
-                <td>Uses</td>
-                <td>Side Effects</td>
-                <td>Image URL</td>
-                <td>Manufacturer</td>
-                <td>Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (let i = 0; i < Math.min(allMedicines.length, displayLimit); i++) { %>
-                <tr>
-                    <td>
-                        <h5><%= allMedicines[i]['Medicine Name'] %></h5>
-                    </td>
-                    <td>
-                        <h5><%= allMedicines[i].Composition %></h5>
-                    </td>
-                    <td>
-                        <h5><%= allMedicines[i].Uses %></h5>
-                    </td>
-                    <td>
-                        <h5><%= allMedicines[i].Side_effects %></h5>
-                    </td>
-                    <td>
-                        <img src="<%= allMedicines[i]['Image URL'] || 'placeholder-image-url.jpg' %>" alt="Medicine Image" width="50">
-                    </td>
-                    <td>
-                        <h5><%= allMedicines[i].Manufacturer %></h5>
-                    </td>
-                    <td>
-                        <h5><%= allMedicines[i]['Excellent Review %'] !== 0 ? 'In Stock' : 'Not in Stock' %></h5>
-                    </td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
-</dir>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
-<script>
-</script>
+</html>

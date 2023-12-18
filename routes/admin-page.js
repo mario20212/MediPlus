@@ -8,15 +8,11 @@ const medicineController = new MedicineController();
 const userController = new UserController();
 
 router.get('/', isAdminMiddleware, async (req, res) => {
-  res.render('dashboard');
-})
-
-router.get('/statistics', async (req, res) => {
   try {
     const { rowCount, latestMedicine, latestNineMeds } = await medicineController.getMedStats();
     const { userCount } = await userController.getUserStats();
 
-    res.render('statistics',{ rowCount, userCount, latestMedicine, latestNineMeds });
+    res.render('dashboard',{ rowCount, userCount, latestMedicine, latestNineMeds });
   } catch (error) {
     console.error('Error in dashboard route:', error.message);
     res.render('404', { message: 'An error occurred while loading the dashboard.' , title: 'Error getting statistics', errcode: '405'});
@@ -43,18 +39,31 @@ router.get('/manage-medicine-content', async (req, res) => {
   }
 });
 
-router.delete('/manage-users-content/deleteUser/:userEmail', async (req, res) => {
+router.post('/delete-user', async (req, res) => {
   try {
-    const userEmail = req.params.userEmail;
-    const {success, message} = await userController.deleteUser(req, res);
+    const userEmail = req.body.email;
+    const { success, message } = await userController.deleteUser(req, res);
 
     res.status(200).json({ message: message, success: success });
   } catch (error) {
     console.error('Error deleting user:', error.message);
-    res.status(500).json({ error: 'An error occurred while deleting the user'});
+    res.status(500).json({ error: 'An error occurred while deleting the user' });
   }
-})
+});
 
+router.post('/update-user', async (req, res) => {
+  try {
+    const { email, username, password, role } = req.body;
+    const { success, message } = await userController.updateUser(email, username, password, role);
+
+    res.status(200).json({ message: message, success: success });
+  } catch (error) {
+    console.error('Error updating user:', error.message);
+    res.status(500).json({ error: 'An error occurred while updating the user' });
+  }
+});
+
+module.exports = router;
 
 module.exports = router;
 

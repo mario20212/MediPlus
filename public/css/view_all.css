@@ -1,0 +1,17 @@
+.view-all-button {
+    background-color: rgb(27, 107, 245);
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: -150px; 
+    left: 350px;
+}
+
+.view-all-button:hover {
+    background-color: #1b6bf5; 
+}

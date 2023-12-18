@@ -8,17 +8,17 @@ class UserController {
 
   async registerNewUser(req, res) {
     const signupData = req.body;
-  
-    if (Object.keys(signupData).length >= 3) {  
+
+    if (Object.keys(signupData).length >= 3) {
       try {
         const user = await this.userModel.getUserByEmail(signupData.email);
         if (user) {
           res.send({ success: "email is already used" });
         } else {
           await this.userModel.createUser(signupData.username, signupData.email, signupData.password, signupData.isAdmin);
-          
+
           const newUser = await this.userModel.getUserByEmail(signupData.email);
-  
+
           console.log(`New user ${signupData.username} created! isAdmin: ${signupData.isAdmin}`);
           res.send({ success: "true", data: { user: newUser, isAdmin: signupData.isAdmin } });
         }
@@ -31,7 +31,7 @@ class UserController {
     }
   }
 
-  
+
   async loginUser(req, res) {
     const loginData = req.body;
     try {
@@ -64,10 +64,10 @@ class UserController {
           role: user.isAdmin === 1 ? 'Admin' : 'User'
         };
       });
-  
+
       console.log('User count:', userCount);
       console.log('All users:', allUsers);
-  
+
       return {
         userCount,
         allUsers
@@ -80,26 +80,55 @@ class UserController {
 
   async deleteUser(req, res) {
     console.log('in controller')
-    const userEmail = req.params.userEmail;
+    const userEmail = req.body.email;
 
     try {
       const userToDelete = await this.userModel.getUserByEmail(userEmail);
       console.log('userToDelete:', userToDelete)
       if (!userToDelete) {
-        return {success: false, message: 'User not found'};
+        return { success: false, message: 'User not found' };
       }
 
       const result = await this.userModel.deleteUserByEmail(userEmail);
       console.log(result);
 
       console.log(`User with email ${userEmail} deleted successfully`);
-      return  { success: true, message: 'User deleted successfully' };
+      return { success: true, message: 'User deleted successfully' };
     } catch (error) {
       console.error('Error deleting user:', error.message);
-      return { success: false, message: 'error occurred while in controller deleting user'}
+      return { success: false, message: 'Error occurred while deleting user in controller' };
     }
   }
-  
+  async updateUser(req, res) {
+    console.log('in controller');
+    const { email, username, password, role } = req.body;
+
+    // Validate role input
+    const isAdmin = role.toLowerCase() === 'admin' ? 1 : 0;
+
+    try {
+        const userToUpdate = await this.userModel.getUserByEmail(email);
+
+        if (!userToUpdate) {
+            return { success: false, message: 'User not found' };
+        }
+
+        userToUpdate.username = username;
+        userToUpdate.password = await bcrypt.hash(password, 10); // Hash the new password
+        userToUpdate.isAdmin = isAdmin; // Set the isAdmin field based on the validated role
+
+        await this.userModel.updateUser(userToUpdate);
+
+        console.log(`User with email ${email} updated successfully`);
+        return { success: true, message: 'User updated successfully' };
+    } catch (error) {
+        console.error('Error updating user:', error.message);
+        return { success: false, message: 'Error occurred while updating user in controller' };
+    }
+}
+
+
+
 }
 
 module.exports = UserController;

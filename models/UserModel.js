@@ -53,6 +53,20 @@ class UserModel {
       throw error;
     }
   }
+  async updateUser(user) {
+    try {
+      const { email, username, password, role } = user;
+
+      const hashedPwd = password ? await bcrypt.hash(password, 10) : null;
+
+      const queryValues = [username, hashedPwd, role, email];
+
+      await query('UPDATE user_info SET username = ?, password = IFNULL(?, password), isAdmin = ? WHERE email = ?', queryValues);
+    } catch (error) {
+      console.error('Error updating user:', error.message);
+      throw error;
+    }
+  }
 }
 
 module.exports = UserModel;

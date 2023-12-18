@@ -3,7 +3,7 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 app.use(function(req, res, next) {
     res.locals.username = req.session.username;
-    res.locals.isAdmin = true;
+    res.locals.isAdmin = req.session.isAdmin;
     next();
 });
 
@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/home.js'))
 app.use('/signinup', require('./routes/handleUser.js'))
 app.use('/search', require('./routes/search.js'))
-app.use('/medicine', require('./routes/medicine-display.js'))
+app.use('/product', require('./routes/product.js'))
 app.use('/schedule', require('./routes/schedule.js'))
 app.use('/blogs', require('./routes/blogs.js'))
 app.use('/contact', require('./routes/contact.js'))
@@ -41,7 +41,7 @@ app.use('/addmedicine', require('./routes/addmedicine.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/admin', require('./routes/admin-page.js'))
 app.use('/system', require('./routes/system.js'))
-
+app.use('/view_all',require('./routes/view_all.js'))
 app.listen(8080, () => {
     console.log("Server is running.....");
 });

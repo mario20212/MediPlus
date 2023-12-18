@@ -1,151 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/favicon.png">
-    <title>Mediplus</title>
-</head>
-<body>
-    
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="keywords" content="Site keywords here">
-		<meta name="description" content="">
-		<meta name='copyright' content=''>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Mediplus</title>
-        <link rel="stylesheet" href="css/schedule.css">
-        <link rel="stylesheet" href="./css/fonts.css">
-        <link rel="stylesheet" href="./css/magnific-popup.css">
-        <link rel="icon" href="img/favicon.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader-outter"></div>
-            <div class="loader-inner"></div>
 
-            <div class="indicator"> 
-                <svg width="16px" height="12px">
-                    <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                    <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-                </svg>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/favicon.png">
+  <title>Mediplus</title>
+</head>
+
+<body>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mediplus</title>
+    <base href="/">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <!-- Nice Select CSS -->
+     <link rel="stylesheet" href="css/nice-select.css">
+     <!-- Font Awesome CSS -->
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <!-- icofont CSS -->
+     <link rel="stylesheet" href="css/icofont.css">
+     <!-- Slicknav -->
+     <link rel="stylesheet" href="css/slicknav.min.css">
+     <!-- Owl Carousel CSS -->
+     <link rel="stylesheet" href="css/owl-carousel.css">
+     <!-- Datepicker CSS -->
+     <link rel="stylesheet" href="css/datepicker.css">
+     <!-- Animate CSS -->
+     <link rel="stylesheet" href="css/animate.min.css">
+     <!-- Magnific Popup CSS -->
+     <link rel="stylesheet" href="css/magnific-popup.css">
+ 
+     <!-- Medipro CSS -->
+     <link rel="stylesheet" href="css/normalize.css">
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/responsive.css">
+
+
+
+
+    <link rel="stylesheet" href="./css/schedule.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  </head>
+
+  <body>
+    <div class="preloader">
+      <div class="loader">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+
+        <div class="indicator">
+          <svg width="16px" height="12px">
+            <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+            <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+          </svg>
         </div>
+      </div>
     </div>
     <%- include("./partials/nav.ejs") %>
 
 
-    <h2 class="display-18 display-md-16 display-lg-14 mb-0" style="margin-left: 40%; margin-top:3%;">Time Schedule-Table</h2>
+      <h2 class="display-18 display-md-16 display-lg-14 mb-0" style="margin-left: 40%; margin-top:3%;">Time
+        Schedule-Table</h2>
 
-    <div class="container" style="margin-top: 1%; margin-left: 5%;">
+      <div class="container" style="margin-top: 1%; margin-left: 5%;">
         <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6 text-center" style="margin-bottom: 5%; margin-left: 50%;">
-        
+
         </div>
         <div class="row">
-        <div class="col-md-12">
-        <div class="schedule-table">
-        <table class="table bg-white">
-        <thead>
-        <tr>
-        <th>Type of Medicine</th>
-        <th>Before Breakfast</th>
-        <th>After Breakfast</th>
-        <th style="display: flex;"><p style="color: transparent;">.....</p>Before Lunch <p style="color: transparent;">.....</p></th>
-        <th >After Lunch </th>
-        <th style="display: flex;"><p style="color: transparent;">.....</p>Before Dinner <p style="color: transparent;">.....</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="day">Pills</td>
-            <td id="pills1"></td>
-            <td id="pills2"></td>
-            <td id="pills3"></td>
-            <td id="pills4"></td>
-            <td id="pills5"></td>
-        </tr>
-        <tr>
-            <td class="day">Liquid Medications</td>
-            <td id="liquid1"></td>
-            <td id="liquid2"></td>
-            <td id="liquid3"></td>
-            <td id="liquid4"></td>
-            <td id="liquid5"></td>
-        </tr>
-        <tr>
-            <td class="day">Injections</td>
-            <td id="injections1"></td>
-            <td id="injections2"></td>
-            <td id="injections3"></td>
-            <td id="injections4"></td>
-            <td id="injections5"></td>
-        </tr>
-        </tbody>
-        </table>
-        </div>
-        </div>
-        </div>
-        </div>
-
-
-
-        
-
-
-
-        <div class="med-container">
-            <h2>Medication Schedule</h2>
-            <form class="med-form">
-              <label for="medicineName" class="med-label">Medicine Name</label>
-              <input type="text" id="medicineName" name="medicineName" class="med-input" required>
-        
-              <label for="medicineType" class="med-label">Medicine Type</label>
-              <select id="medicineType" name="medicineType" class="med-select" required>
-                <option value="pills">Pills</option>
-                <option value="liquid">Liquid Medications</option>
-                <option value="injections">Injections</option>
-              </select>
-        
-              <label for="whenToTake" class="med-label">When to Take</label>
-              <div class="med-checkbox-group">
-                <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="1beforeBreakfast">
-                <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
-        
-                <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="2afterBreakfast">
-                <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
-        
-                <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="3beforeLunch">
-                <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
-        
-                <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="4afterLunch">
-                <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
-        
-                <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="5beforeDinner">
-                <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
-              </div>
-
-                <!-- Add more options as needed -->
-              </select>
-        
-              <label for="dose" class="med-label">Dose</label>
-              <input type="text" id="dose" name="dose" class="med-input" required>
-        
-              <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
-            </form>
+          <div class="col-md-12">
+            <div class="schedule-table">
+              <table class="table bg-white">
+                <thead>
+                  <tr>
+                    <th>Type of Medicine</th>
+                    <th>Before Breakfast</th>
+                    <th>After Breakfast</th>
+                    <th style="display: flex;">
+                      <p style="color: transparent;">.....</p>Before Lunch <p style="color: transparent;">.....</p>
+                    </th>
+                    <th>After Lunch </th>
+                    <th style="display: flex;">
+                      <p style="color: transparent;">.....</p>Before Dinner <p style="color: transparent;">.....</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="day">Pills</td>
+                    <td id="pills1"></td>
+                    <td id="pills2"></td>
+                    <td id="pills3"></td>
+                    <td id="pills4"></td>
+                    <td id="pills5"></td>
+                  </tr>
+                  <tr>
+                    <td class="day">Liquid Medications</td>
+                    <td id="liquid1"></td>
+                    <td id="liquid2"></td>
+                    <td id="liquid3"></td>
+                    <td id="liquid4"></td>
+                    <td id="liquid5"></td>
+                  </tr>
+                  <tr>
+                    <td class="day">Injections</td>
+                    <td id="injections1"></td>
+                    <td id="injections2"></td>
+                    <td id="injections3"></td>
+                    <td id="injections4"></td>
+                    <td id="injections5"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          
-   
-    <%- include("./partials/footer.ejs") %>
+        </div>
+      </div>
 
-    
+
+
+
+
+
+
+      <div class="med-container">
+        <h2>Medication Schedule</h2>
+        <form class="med-form">
+          <label for="medicineName" class="med-label">Medicine Name</label>
+          <input type="text" id="medicineName" name="medicineName" class="med-input" required>
+
+          <label for="medicineType" class="med-label">Medicine Type</label>
+          <select id="medicineType" name="medicineType" class="med-select" required>
+            <option value="pills">Pills</option>
+            <option value="liquid">Liquid Medications</option>
+            <option value="injections">Injections</option>
+          </select>
+
+          <label for="whenToTake" class="med-label">When to Take</label>
+          <div class="med-checkbox-group">
+            <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="1beforeBreakfast">
+            <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
+
+            <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="2afterBreakfast">
+            <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
+
+            <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="3beforeLunch">
+            <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
+
+            <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="4afterLunch">
+            <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
+
+            <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="5beforeDinner">
+            <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
+          </div>
+
+          <!-- Add more options as needed -->
+          </select>
+
+          <label for="dose" class="med-label">Dose</label>
+          <input type="text" id="dose" name="dose" class="med-input" required>
+
+          <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
+        </form>
+      </div>
+
+
+
+
+
+
+
+      <%- include("./partials/footer.ejs") %>
+
+
+
+  </body>
+
+  </html>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script src="./js/suggestions.js"></script>
+  <script src="./js/search.js"></script>
+
+
+
+
+
+
+
+  <div class="med-container">
+    <h2>Medication Schedule</h2>
+    <form class="med-form">
+      <label for="medicineName" class="med-label">Medicine Name</label>
+      <input type="text" id="medicineName" name="medicineName" class="med-input" required>
+
+      <label for="medicineType" class="med-label">Medicine Type</label>
+      <select id="medicineType" name="medicineType" class="med-select" required>
+        <option value="pills">Pills</option>
+        <option value="liquid">Liquid Medications</option>
+        <option value="injections">Injections</option>
+      </select>
+
+      <label for="whenToTake" class="med-label">When to Take</label>
+      <div class="med-checkbox-group">
+        <input type="checkbox" id="beforeBreakfast" name="whenToTake" class="med-checkbox" value="1beforeBreakfast">
+        <label for="beforeBreakfast" class="med-checkbox-label">Before Breakfast</label>
+
+        <input type="checkbox" id="afterBreakfast" name="whenToTake" class="med-checkbox" value="2afterBreakfast">
+        <label for="afterBreakfast" class="med-checkbox-label">After Breakfast</label>
+
+        <input type="checkbox" id="beforeLunch" name="whenToTake" class="med-checkbox" value="3beforeLunch">
+        <label for="beforeLunch" class="med-checkbox-label">Before Lunch</label>
+
+        <input type="checkbox" id="afterLunch" name="whenToTake" class="med-checkbox" value="4afterLunch">
+        <label for="afterLunch" class="med-checkbox-label">After Lunch</label>
+
+        <input type="checkbox" id="beforeDinner" name="whenToTake" class="med-checkbox" value="5beforeDinner">
+        <label for="beforeDinner" class="med-checkbox-label">Before Dinner</label>
+      </div>
+
+      <!-- Add more options as needed -->
+      </select>
+
+      <label for="dose" class="med-label">Dose</label>
+      <input type="text" id="dose" name="dose" class="med-input" required>
+
+      <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
+    </form>
+  </div>
+
+
+  <%- include("./partials/footer.ejs") %>
+
+
 </body>
+
 </html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -172,6 +274,3 @@
 
 
 
-
-</body>
-</html>

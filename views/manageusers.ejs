@@ -1,73 +1,108 @@
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<h3 class="i-name">Manage Users</h3>
-<dir class="board">
-    <table width="100%">
-        <thead>
-            <tr>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Password</td>
-                <td>Role</td>
-                <td>Delete</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% allUsers.forEach(user => { %>
-                <tr>
-                    <td class="people">
-                        <div class="people-de">
-                            <h5>
-                                <%= user.username %>
-                            </h5>
-                        </div>
-                    </td>
-                    <td>
-                        <h5>
-                            <%= user.email %>
-                        </h5>
-                    </td>
-                    <td>
-                        <h5>
-                            <%= user.password %>
-                        </h5>
-                    </td>
-                    <td>
-                        <h5>
-                            <%= user.role %>
-                        </h5>
-                    </td>
-                    <td>
-                        <h5>
-                            <a href="#" style="text-decoration: none;" class="delete-user" data-user-email="<%= user.email %>">Delete</a>
-                        </h5>
-                    </td>
-                </tr>
-                <% }); %>
-        </tbody>
-        
-    </table>
-</dir>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <%- include("./partials/side-panel.ejs") %>
+    <section id="interface">
+        <%- include("./partials/search-bar.ejs") %>
+            <div id="dynamic-content">
+                <h3 class="i-name">
+                    Manage Users
+                </h3>
+                <dir class="board">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Password</td>
+                                <td>Role</td>
+                                <td>Delete</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% allUsers.forEach(user=> { %>
+                                <tr id="user-row-<%= user.email %>">
+                                    <td class="people">
+                                        <div class="people-de">
+                                            <h5>
+                                                <%= user.username %>
+                                            </h5>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%= user.email %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%= user.password %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%= user.role %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <a href="#" style="text-decoration: none;" class="delete-user"
+                                                data-user-email="<%= user.email %>">Delete</a>
+                                        </h5>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </dir>
+            </div>
+    </section>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
-      const deleteUrl = '/admin/manage-users-content';
-  
-      $(document).on('click', '.delete-user', function (e) {
-        e.preventDefault();
-  
-        const userEmail = $(this).data('user-email');
-  
-        $.ajax({
-          url: `${deleteUrl}/deleteUser/${userEmail}`,
-          method: 'DELETE',
-          success: function (response) {
-            $(`tr[data-user-email="${userEmail}"]`).remove();
-            console.log('User deleted successfully');
-          },
-          error: function (error) {
-            console.error('Error deleting user:', error);
-          }
+        $('.delete-user').on('click', function (e) {
+            e.preventDefault();
+            var userEmail = $(this).data('user-email');
+            var escapedUserEmail = $.escapeSelector(userEmail); // Escape special characters in the email
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/delete-user',
+                data: { email: userEmail },
+                success: function (data) {
+                    $('#user-row-' + escapedUserEmail).remove(); // Use the escaped email as the selector
+                },
+                error: function (err) {
+                    console.error('Error deleting user:', err);
+                }
+            });
         });
-      });
     });
 </script>
+
+
+</html>
