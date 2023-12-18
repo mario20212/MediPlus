@@ -29,7 +29,8 @@ const products = [product1, product2, product3];
 const cart1 = new cart(1, 1, products);
 router.get('/', (req, res) => {
     res.render('cart', {
-        cart: cart1
+        cart: cart1,
+        options: (req.session.cart === undefined ? "" : req.session.user)
     });
 })
 
