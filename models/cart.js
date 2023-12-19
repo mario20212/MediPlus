@@ -10,10 +10,11 @@ class cart {
         console.log("Constructed new cart successfully");
     }
 
-    async createCart() {
+    async createCart(userid, cart) {
         const insertQuery = 'INSERT INTO cart (user_id, medicine_names, medicine_quantity, total_price, is_empty) VALUES (?, ?, ?, ?, ?)';
         try {
-            await query(insertQuery, [this.user_id, JSON.stringify(this.medicine_names), JSON.stringify(this.medicine_quantity), this.total_price, this.is_empty]);
+
+            await query(insertQuery, [userid, JSON.stringify(cart.medicine_names), JSON.stringify(cart.medicine_quantity), cart.total_price, cart.is_empty]);
             console.log('Cart created in the database.');
         } catch (error) {
             console.error('Error creating cart in the database:', error);
@@ -35,10 +36,17 @@ class cart {
                     console.log(newCart);
                     return newCart;
                 } else {
+                    newCart = new cart(userId, [], []);
                     console.log("I am 2");
-                    newCart = new cart(userId, JSON.parse(cartData.medicine_names), JSON.parse(cartData.medicine_quantity));
-                    newCart.total_price = await newCart.calculateTotal();
-                    newCart.is_empty = newCart.total_price === 0 ? true : false;
+                    console.log(cartData.medicine_names + cartData.medicine_quantity);
+                    cartData.medicine_quantity = JSON.parse(cartData.medicine_quantity);
+                    console.log("loopcount" + cartData.medicine_quantity.length);
+                    for (let i = 0; i < cartData.medicine_quantity.length; i++) {
+                        newCart.medicine_quantity.push(cartData.medicine_quantity[i]);
+                        newCart.medicine_names.push(cartData.medicine_names[i]);
+                    }
+                    newCart.id = cartData.id;
+                    console.log(newCart.medicine_names + newCart.medicine_quantity);
                     return newCart;
                 }
             } else {
@@ -49,10 +57,12 @@ class cart {
         }
     }
 
-    static async addToCart(productName, cart, quantity = 1) {
+    static async addToCart(productName, cart, userid) {
         // Search for the product in the database and add to cart
         const selectQuery = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
         try {
+
+            let quantity = 1;
             const results = await query(selectQuery, productName);
 
             if (results.length > 0) {
@@ -65,6 +75,7 @@ class cart {
                     cart.medicine_quantity.push(quantity);
                 }
                 console.log(cart.medicine_names);
+                this.updateCart(cart);
                 return cart;
 
             } else {
@@ -100,8 +111,14 @@ class cart {
 
     static async updateCart(cartObject) {
         const updateQuery = 'UPDATE cart SET user_id = ?, medicine_names = ?, medicine_quantity = ?, total_price = ?, is_empty = ? WHERE id = ?';
+        const idquery = 'Select * From cart WHERE user_id = ?'
         try {
-            await query(updateQuery, [cartObject.user_id, JSON.stringify(cartObject.medicine_names), JSON.stringify(cartObject.medicine_quantity), cartObject.total_price, cartObject.is_empty, cartObject.id]);
+            let result = await query(idquery, [cartObject.user_id]);
+            console.log(result);
+            console.log(result[0].id);
+            console.log("cart xeft update" + [cartObject.user_id, JSON.stringify(cartObject.medicine_names), JSON.stringify(cartObject.medicine_quantity), cartObject.total_price, cartObject.is_empty, cartObject.id])
+            await query(updateQuery, [cartObject.user_id, JSON.stringify(cartObject.medicine_names), JSON.stringify(cartObject.medicine_quantity), cartObject.total_price, cartObject.is_empty, result[0].id]);
+
             console.log('Cart updated in the database.');
         } catch (error) {
             console.error('Error updating cart in the database:', error);

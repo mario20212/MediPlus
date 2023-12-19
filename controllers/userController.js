@@ -22,7 +22,7 @@ class UserController {
 
                     const newUser = await this.userModel.getUserByEmail(signupData.email);
                     const user_cart = new Cart(newUser.user_id);
-                    user_cart.createCart();
+                    user_cart.createCart(newUser.user_id, user_cart);
                     req.session.cart = user_cart;
                     console.log("sigunup done and the session cart is " + req.session.cart);
 

@@ -40,10 +40,14 @@
                                                         <div class="image-container"> <img src="<%= product['Image URL'] %>" alt="Product Image" style="width: 200px; height: 200px;"> </div>
                                                         <div class="product-details">
                                                             <div class="product-name">
-                                                                <%=['Medicine Name'] %>
+                                                                <%=product['Medicine Name'] %>
                                                             </div>
                                                             <div class="product-price"> EGP
                                                                 <%=product.Price %>
+                                                            </div>
+                                                            <div class="product-name">
+                                                                Quantity :
+                                                                <%=quantity_array[index]%>
                                                             </div>
                                                             <% if (options && options.length > 0) { %>
                                                                 <div class="options-container">
@@ -62,18 +66,18 @@
                                                                 <% } else { %>
                                                                     <p>No options available.</p>
                                                                     <% } %>
-                                                                        <div class="product-quantity"> <input name="quantity[]" class="quantity-select" type="number" min="1" value="1" data-index="<%= index %>"> </div>
+
 
                                                         </div>
                                                         <div class="delete-button">
-                                                            <a href="/cart/delete/<%= product.name %>"> <img class="delete-button" src="img/delete.png" alt="Delete Product"> </a>
+                                                            <a href="/cart/delete/<%=product['Medicine Name'] %> <img class=" delete-button " src="img/delete.png " alt="Delete Product "> </a>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="line"></div>
+                                                    <div class="line "></div>
                                                 </td>
                                             </tr>
                                             <%
@@ -82,38 +86,44 @@
             %>
                                     </tbody>
                                 </table>
-                                <div class="line"></div>
-                                <div class="total"><span class="total-title">Total:</span><span class="total-value">EGP 0.00</span></div>
-                                <div class="formbold-main-wrapper">
+                                <div class="line "></div>
+                                <div class="total "><span class="total-title ">Total:</span><span class="total-value ">EGP 0.00</span></div>
+                                <div class="formbold-main-wrapper ">
                                     <!-- Author: FormBold Team -->
                                     <!-- Learn More: https: //formbold.com -->
-                                    <div class="formbold-form-wrapper">
-                                        <!-- <img src="your-image-url-here.jpg">-->
-                                        <div class="formbold-form-title">
-                                            <h2 class="">Shipping Information</h2>
+                                    <div class="formbold-form-wrapper ">
+                                        <!-- <img src="your-image-url-here.jpg ">-->
+                                        <div class="formbold-form-title ">
+                                            <h2 class=" ">Shipping Information</h2>
                                         </div>
-                                        <div class="formbold-input-flex">
-                                            <div><label for="firstname" class="formbold-form-label">First name</label><input type="text" name="firstname" id="firstname" class="formbold-form-input" pattern="[A-Za-z]+" required title="Please enter a valid first name (letters only)"></div>
-                                            <div><label for="lastname" class="formbold-form-label">Last name</label><input type="text" name="lastname" id="lastname" class="formbold-form-input" pattern="[A-Za-z]+" required title="Please enter a valid last name (letters only)"></div>
+                                        <div class="formbold-input-flex ">
+                                            <div><label for="firstname " class="formbold-form-label ">First name</label><input type="text " name="firstname " id="firstname " class="formbold-form-input " pattern="[A-Za-z]+ " required title="Please enter
+                                                                a valid first name (letters only) "></div>
+                                            <div><label for="lastname " class="formbold-form-label ">Last name</label><input type="text " name="lastname " id="lastname " class="formbold-form-input " pattern="[A-Za-z]+ " required title="Please enter
+                                                                a valid last name (letters only) "></div>
                                         </div>
-                                        <div class="formbold-input-flex">
-                                            <div><label for="email" class="formbold-form-label">Email</label><input type="email" name="email" id="email" class="formbold-form-input" pattern="[A-Za-z0-9._%+-]+@gmail\.com$" required title="Please enter a valid mail address"></div>
-                                            <div><label for="phone" class="formbold-form-label">Phone number</label><input type="text" name="phone" id="phone" class="formbold-form-input" pattern="0[0-9]{9,11}" required title="Please enter a valid phone number (10 to 11 digits starting with 0)"
-                                                    maxlength="11"></div>
+                                        <div class="formbold-input-flex ">
+                                            <div><label for="email " class="formbold-form-label ">Email</label><input type="email " name="email " id="email " class="formbold-form-input " pattern="[A-Za-z0-9._%+-]+@gmail\.com$ " required title="Please
+                                                                enter a valid mail address "></div>
+                                            <div><label for="phone " class="formbold-form-label ">Phone number</label><input type="text " name="phone " id="phone " class="formbold-form-input " pattern="0[0-9]{9,11} " required title="Please enter a valid
+                                                                phone number (10 to 11 digits starting with 0) "
+                                                    maxlength="11 "></div>
                                         </div>
-                                        <div class="formbold-mb-3"><label for="address" class="formbold-form-label">Address</label><input type="text" name="address" id="address" class="formbold-form-input" pattern="^[A-Za-z]+\s[A-Za-z]+\s?.*$" required title="Please enter a valid address (at least 2 words)"></div>
-                                        <div class="formbold-input-flex">
-                                            <div><label for="city" class="formbold-form-label">City</label><input type="text" name="city" id="city" class="formbold-form-input" required></div>
+                                        <div class="formbold-mb-3 "><label for="address " class="formbold-form-label ">Address</label><input type="text " name="address " id="address " class="formbold-form-input " pattern="^[A-Za-z]+\s[A-Za-z]+\s?.*$
+                                                                " required title="Please enter a valid address (at least 2 words) "></div>
+                                        <div class="formbold-input-flex ">
+                                            <div><label for="city " class="formbold-form-label ">City</label><input type="text " name="city " id="city " class="formbold-form-input " required></div>
                                         </div>
-                                        <div class="formbold-checkbox-wrapper"><label for="paymentMethod" class="formbold-form-label">Payment Method</label><select name="paymentMethod" id="paymentMethod" class="formbold-form-input" required><option value="">Select a payment method</option><option value="cashOnDelivery">Cash on Delivery</option><option value="visa">Visa</option></select></div>
-                                        <div><input type="submit" class="pay-btn" value="Proceed to Checkout"></div>
+                                        <div class="formbold-checkbox-wrapper "><label for="paymentMethod " class="formbold-form-label ">Payment Method</label><select name="paymentMethod " id="paymentMethod " class="formbold-form-input
+                                                                " required><option value=" ">Select a payment method</option><option value="cashOnDelivery ">Cash on Delivery</option><option value="visa ">Visa</option></select></div>
+                                        <div><input type="submit " class="pay-btn " value="Proceed to Checkout "></div>
                             </form>
                             <%
         }
         
         else {
             %>
-                                <p class="empty-cart">Your cart is empty.</p>
+                                <p class="empty-cart ">Your cart is empty.</p>
                                 <%
         }
         
@@ -134,13 +144,13 @@
                 quantity: parseInt(document.querySelectorAll('.quantity-select')[index].value)
             }));
             const total = parseFloat(document.querySelector('.total-value').textContent.replace('EGP ', ''));
-            const firstName = document.querySelector('input[name="firstname"]').value;
-            const lastName = document.querySelector('input[name="lastname"]').value;
-            const email = document.querySelector('input[name="email"]').value;
-            const phone = document.querySelector('input[name="phone"]').value;
-            const address = document.querySelector('input[name="address"]').value;
-            const city = document.querySelector('input[name="city"]').value;
-            const paymentMethod = document.querySelector('select[name="paymentMethod"]').value;
+            const firstName = document.querySelector('input[name="firstname "]').value;
+            const lastName = document.querySelector('input[name="lastname "]').value;
+            const email = document.querySelector('input[name="email "]').value;
+            const phone = document.querySelector('input[name="phone "]').value;
+            const address = document.querySelector('input[name="address "]').value;
+            const city = document.querySelector('input[name="city "]').value;
+            const paymentMethod = document.querySelector('select[name="paymentMethod "]').value;
             // Create an object with the data to be sent to the server
             const data = {
                 products,
