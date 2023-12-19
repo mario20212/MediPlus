@@ -43,7 +43,7 @@ The Clinic Management System is a web application designed to streamline the man
 
 2. **Install Dependencies:**
    ```bash
-   cd clinic-management-system
+   cd MediPlus
    npm install
    ```
 
