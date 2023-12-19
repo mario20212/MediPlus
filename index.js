@@ -45,6 +45,9 @@ app.use('/cart', isLoggedIn, require('./routes/cart.js'))
 app.use('/admin', isLoggedIn, require('./routes/admin-page.js'))
 app.use('/system', isLoggedIn, require('./routes/system.js'))
 app.use('/view_all', isLoggedIn, require('./routes/view_all.js'))
+app.use('/cart', require('./routes/cart.js'))
+app.use('/profile', require('./routes/profile'))
+
 app.listen(8080, () => {
     console.log("Server is running.....");
 });
