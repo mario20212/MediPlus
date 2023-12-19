@@ -58,7 +58,7 @@ window.onload = function () {
     });
   
     function sendDrugNamesToBackend() {
-      var endpoint = 'http://localhost:3000'; 
+      var endpoint = '/conflict'; 
       
       if (drugNames.length === 2) {
         
