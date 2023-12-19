@@ -21,52 +21,54 @@ class utilitiesController {
             res.status(500).json({ success: false, error: 'An error occurred while creating the Nav' });
         }
     }
-    async conflict(drugNames){
+    async conflict(req,res){
+        const { drugNames } = req.body; 
+
         try {
-            const rxcuis = [];
-        
-            // Call the RXCUI finder API for each drug
-            for (const drugName of drugNames) {
-              const response = await axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui.json?name=${drugName}`);
-              if (response.data.idGroup && response.data.idGroup.rxnormId) {
-                const rxcui = response.data.idGroup.rxnormId[0];
-                rxcuis.push(rxcui);
-                console.log(`RXCUI for ${drugName}: ${rxcui}`);
-              } else {
-                res.status(404).json({ error: `RxCUI not found for the given drug name: ${drugName}` });
-                return;
-              }
-            }
-        
-            // Call the drug interaction API
-            const interactionResponse = await axios.get(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuis.join('+')}`);
-        
-           
-            let descriptions =[];
-        
-            // Check if any interaction data was returned
-            if (interactionResponse.data.fullInteractionTypeGroup && interactionResponse.data.fullInteractionTypeGroup.length > 0) {
-              // Extract the interaction data
-              const interactions = interactionResponse.data.fullInteractionTypeGroup[0].fullInteractionType.map(interaction => interaction.interactionPair);
-              
-              // Extract descriptions
-              descriptions = interactions.flat().map(pair => pair.description);
-              
-              console.log(`Interactions for ${drugNames.join(', ')}:`, interactions);
-              console.log(`Descriptions:`, descriptions);
+          const rxcuis = [];
+      
+          // Call the RXCUI finder API for each drug
+          for (const drugName of drugNames) {
+            const response = await axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui.json?name=${drugName}`);
+            if (response.data.idGroup && response.data.idGroup.rxnormId) {
+              const rxcui = response.data.idGroup.rxnormId[0];
+              rxcuis.push(rxcui);
+              console.log(`RXCUI for ${drugName}: ${rxcui}`);
             } else {
-              descriptions.push('No Interactions Found');
-              console.log(descriptions);
+              res.status(404).json({ error: `RxCUI not found for the given drug name: ${drugName}` });
+              return;
             }
-            
-            // Always send the descriptions and drug names to the frontend
-            res.status(200).json({ drugNames, descriptions });
-            
-            
-          } catch (error) {
-            console.error(`Error while fetching data: ${error.message}`);
-            res.status(500).json({ error: 'Internal server error' });
           }
+      
+          // Call the drug interaction API
+          const interactionResponse = await axios.get(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuis.join('+')}`);
+      
+         
+          let descriptions =[];
+      
+          // Check if any interaction data was returned
+          if (interactionResponse.data.fullInteractionTypeGroup && interactionResponse.data.fullInteractionTypeGroup.length > 0) {
+            // Extract the interaction data
+            const interactions = interactionResponse.data.fullInteractionTypeGroup[0].fullInteractionType.map(interaction => interaction.interactionPair);
+            
+            // Extract descriptions
+            descriptions = interactions.flat().map(pair => pair.description);
+            
+            console.log(`Interactions for ${drugNames.join(', ')}:`, interactions);
+            console.log(`Descriptions:`, descriptions);
+          } else {
+            descriptions.push('No Interactions Found');
+            console.log(descriptions);
+          }
+          
+          // Always send the descriptions and drug names to the frontend
+          res.status(200).json({ drugNames, descriptions });
+          
+          
+        } catch (error) {
+          console.error(`Error while fetching data: ${error.message}`);
+          res.status(500).json({ error: 'Internal server error' });
+        }
     }
 
     async getAllNavs(req, res) {
