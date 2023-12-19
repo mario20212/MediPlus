@@ -27,12 +27,12 @@
                     <div class="order-info-content">
                         <h2>Order Summary</h2>
                         <div class="line"></div>
-                        <% if (cart.products.length> 0) {
+                        <% if (cart.medicineNames.length> 0) {
             %>
                             <form id="orderForm" action="/shippingform/checkout" method="post">
                                 <table class="order-table">
                                     <tbody>
-                                        <% cart.products.forEach((product, index)=> {
+                                        <% cart.medicineNames.forEach((product, index)=> {
                 %>
                                             <tr>
                                                 <td>
