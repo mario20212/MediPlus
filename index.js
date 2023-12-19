@@ -3,7 +3,7 @@ const app = express();
 const session = require('express-session');
 const path = require('path');
 const isLoggedIn = require('./middleware/isLoggedIn.js');
-
+const mailer = require('./models/schedule.js');
 app.use(express.static(__dirname + '/public'));
 const dotenv = require('dotenv');
 dotenv.config();
@@ -48,6 +48,7 @@ app.use('/view_all', isLoggedIn, require('./routes/view_all.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/profile', require('./routes/profile'))
 app.use('/conflict', isLoggedIn, require('./routes/conflict.js'))
+mailer.continuousReminderCheck();
 
 app.listen(8080, () => {
     console.log("Server is running.....");
