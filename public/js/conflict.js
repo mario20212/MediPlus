@@ -46,4 +46,11 @@ window.onload = function () {
           // Send updated drug names to the backend
           sendDrugNamesToBackend();
         });
+        drugNames.push(drugText.textContent);
+  
         
+        if (drugNames.length === 2) {
+          sendDrugNamesToBackend();
+        }
+      }
+    });
