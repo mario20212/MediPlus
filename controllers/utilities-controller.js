@@ -1,5 +1,6 @@
 const MedicineModel = require('../models/MedicineModel');
 const NavigationLinks = require('../models/NavigationLink');
+const Schedule = require('../models/schedule');
 
 class utilitiesController {
     constructor() {
@@ -35,6 +36,24 @@ class utilitiesController {
             res.status(500).json({ success: false, error: 'An error occurred while fetching navigation items.' });
         }
     }
+
+
+    async saveschedule(req, res) {
+        let list=req.body;
+        console.log(list);
+        for(let i=0;i<list.schedule.length;i++)
+        {
+            const schedulemodel=new Schedule(list.schedule[i].email,list.schedule[i].usermedicineName,list.schedule[i].id,list.schedule[i].dose,list.schedule[i].whenToTakeValues)
+            await schedulemodel.save();
+        }
+        res.send({success:"Saved Successfully"})
+    
+    }
+
+
+
+
+
 }
 
 module.exports = utilitiesController;
