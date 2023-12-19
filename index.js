@@ -31,6 +31,7 @@ app.use(function(req, res, next) {
     res.locals.username = req.session.username;
     res.locals.id = req.session.userId;
     res.locals.isAdmin = req.session.isAdmin;
+    res.locals.cart = req.session.cart;
     next();
 });
 
@@ -48,8 +49,7 @@ app.use('/addmedicine', require('./routes/addmedicine.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/admin', require('./routes/admin-page.js'))
 app.use('/system', require('./routes/system.js'))
-app.use('/view_all',require('./routes/view_all.js'))
-
+app.use('/view_all', require('./routes/view_all.js'))
 app.listen(8080, () => {
     console.log("Server is running.....");
 });
