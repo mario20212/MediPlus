@@ -38,7 +38,7 @@ The Clinic Management System is a web application designed to streamline the man
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/clinic-management-system.git
+   [git clone https://github.com/your-username/clinic-management-system.git](https://github.com/mario20212/MediPlus)
    ```
 
 2. **Install Dependencies:**
