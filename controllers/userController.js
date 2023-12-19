@@ -11,7 +11,7 @@ class UserController {
 
     async registerNewUser(req, res) {
         const signupData = req.body;
-        
+
         if (Object.keys(signupData).length >= 3) {
             try {
                 const user = await this.userModel.getUserByEmail(signupData.email);
@@ -21,10 +21,7 @@ class UserController {
                     await this.userModel.createUser(signupData.username, signupData.email, signupData.password, signupData.isAdmin);
 
                     const newUser = await this.userModel.getUserByEmail(signupData.email);
-                    const user_cart = new Cart(newUser.user_id);
-                    user_cart.createCart(newUser.user_id, user_cart);
-                    req.session.cart = user_cart;
-                    console.log("sigunup done and the session cart is " + req.session.cart);
+
 
                     console.log(`New user ${signupData.username} created! isAdmin: ${signupData.isAdmin}`);
                     res.send({ success: "true", data: { user: newUser, isAdmin: signupData.isAdmin } });
@@ -49,16 +46,7 @@ class UserController {
                     req.session.isAdmin = user.isAdmin === 1;
                     req.session.username = user.username
                     console.log(req.session.isAdmin);
-                    let cart_check = 0;
-                    cart_check = await Cart.getCartByUserId(user.user_id);
-                    console.log("checking");
-                    console.log(" the cart check is " + cart_check);
-                    if (cart_check != 0 || cart_check != undefined) {
-                        req.session.cart = cart_check;
-                        console.log("i am here after session assignment and the cart is" + req.session.cart);
-                    } else {
-                        console.log("error in retreaiving cart");
-                    }
+
 
                     res.send({ success: "true", data: user });
                 } else {
