@@ -10,7 +10,7 @@ class cart {
     }
 
     static async createCart(userid, medicineNames, medicineQuantity) {
-        const insertQuery = 'INSERT INTO cart (user_id, medicine_names, medicine_quantity) VALUES (?, ?, ?)';
+        const insertQuery = 'INSERT INTO cart (user_id, medicine_name, medicine_quantity) VALUES (?, ?, ?)';
         try {
 
             await query(insertQuery, [userid, medicineNames, medicine_quantity]);
@@ -40,6 +40,7 @@ class cart {
 
     static async addToCart(productName, userid) {
         // Search for the product in the database and add to cart
+        console.log(userid);
         const selectQuery = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
         try {
 
@@ -47,10 +48,10 @@ class cart {
             const results = await query(selectQuery, productName);
 
             if (results.length > 0 && results[0].Quantity > 0) {
-                const insertQuery = 'INSERT INTO cart (user_id, medicine_names, medicine_quantity) VALUES (?, ?, ?)';
+                const insertQuery = 'INSERT INTO cart (user_id, medicine_name, medicine_quantity) VALUES (?, ?, ?)';
                 try {
 
-                    await query(insertQuery, [userid, medicineNames, medicine_quantity]);
+                    await query(insertQuery, [userid, productName, quantity]);
                     console.log('added to cart succefully');
                 } catch (error) {
                     console.error('Error creating cart in the database:', error);
@@ -75,8 +76,8 @@ class cart {
     DELETE FROM cart 
     WHERE user_id = ? AND medicine_name = ?
     `;
-        result = await query(remquery, [productName, userid]);
-        console.log(result);
+        await query(remquery, [userid, productName]);
+
 
 
 

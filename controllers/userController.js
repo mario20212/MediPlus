@@ -44,7 +44,8 @@ class UserController {
                 const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
                 if (isPasswordMatch) {
                     req.session.isAdmin = user.isAdmin === 1;
-                    req.session.username = user.username
+                    req.session.username = user.username;
+                    req.session.userId = user.user_id;
                     console.log(req.session.isAdmin);
 
 
