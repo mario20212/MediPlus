@@ -2,8 +2,9 @@ const bcrypt = require('bcrypt');
 const UserModel = require('../models/UserModel');
 const Cart = require('../models/cart');
 
+
 class UserController {
-    cart = new Cart(99);
+
     constructor() {
         this.userModel = new UserModel();
     }
@@ -22,6 +23,8 @@ class UserController {
                     const newUser = await this.userModel.getUserByEmail(signupData.email);
                     const user_cart = new Cart(newUser.user_id);
                     user_cart.createCart();
+                    req.session.cart = user_cart;
+                    console.log("sigunup done and the session cart is " + req.session.cart);
 
                     console.log(`New user ${signupData.username} created! isAdmin: ${signupData.isAdmin}`);
                     res.send({ success: "true", data: { user: newUser, isAdmin: signupData.isAdmin } });
@@ -49,12 +52,11 @@ class UserController {
                     cart_check = await Cart.getCartByUserId(user.user_id);
                     console.log("checking");
                     console.log(" the cart check is " + cart_check);
-                    if (cart_check != 0 || cart_check == undefined) {
-                        req.session.cart = cart_check[0];
+                    if (cart_check != 0 || cart_check != undefined) {
+                        req.session.cart = cart_check;
+                        console.log("i am here after session assignment and the cart is" + req.session.cart);
                     } else {
-                        user_cart = new Cart(user.user_id);
-                        user_cart.createCart();
-                        req.session.cart = user_cart;
+                        console.log("error in retreaiving cart");
                     }
 
                     res.send({ success: "true", data: user });

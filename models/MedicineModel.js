@@ -6,9 +6,9 @@ class MedicineModel {
     id = 0,
     MedicineName = '',
     medicine_type = '',
-    Composition ='',
-    Uses ='',
-    Side_effects ='',
+    Composition = '',
+    Uses = '',
+    Side_effects = '',
     Manufacturer = '',
     Price = 0.0,
     Quantity = 0
@@ -123,6 +123,40 @@ class MedicineModel {
       throw error;
     }
   }
+  async getMedicinesByName(productName) {
+    try {
+      const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
+
+      const result = await query(queryString, productName);
+
+      return result[0];
+    } catch (error) {
+      console.error(`Error getting medicines by uses:`, error.message);
+      throw error;
+    }
+  }
+  async getMedicinesarray(productNames) {
+    try {
+      let results = [];
+      for (let i = 0; i < productNames.length; i++) {
+        const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
+        const result = await query(queryString, productNames[i]);
+        if (result != "" && result != undefined && result != []) {
+          results.push(result[0]);
+
+        }
+
+      }
+
+
+
+
+      return results;
+    } catch (error) {
+      console.error(`Error getting array `, error.message);
+      throw error;
+    }
+  }
 
   async getMedicineOptionsById(medicineId) {
     try {
@@ -147,9 +181,9 @@ class MedicineModel {
       console.log(this)
       const [maxIdResult] = await query('SELECT MAX(id) AS maxId FROM ??', [tableName]);
       const maxId = maxIdResult.maxId || 0;
-  
+
       const newId = maxId + 1;
-  
+
       const insertQuery = 'INSERT INTO ?? SET ?';
       const result = await query(insertQuery, [tableName, {
         id: newId,
@@ -167,22 +201,22 @@ class MedicineModel {
         AddedByUserID: 12,
         UpdatedByUserID: 12
       }]);
-    
+
       console.log('Insert Result:', result);
-    
+
       if (!result || result.affectedRows !== 1) {
         throw new Error('Failed to add medicine to the database');
       }
-    
+
       return newId;
     } catch (error) {
       console.error('In Model Error adding medicine:', error.message);
       throw error;
     }
   }
-  
-  
-  
+
+
+
 
 
 }
