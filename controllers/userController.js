@@ -11,7 +11,7 @@ class UserController {
 
     async registerNewUser(req, res) {
         const signupData = req.body;
-
+        
         if (Object.keys(signupData).length >= 3) {
             try {
                 const user = await this.userModel.getUserByEmail(signupData.email);
