@@ -34,7 +34,7 @@ class NavigationLinks {
         }
     }
 
-    static async getAll() {
+    async getAll() {
         try {
             const selectQuery = 'SELECT * FROM ?? ORDER BY display_order';
             const result = await query(selectQuery, [tableName]);

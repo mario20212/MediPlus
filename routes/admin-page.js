@@ -3,9 +3,11 @@ const router = express.Router();
 const isAdminMiddleware = require('../middleware/isAdminMiddleware');
 const MedicineController = require('../controllers/medicine-controller');
 const UserController = require('../controllers/userController');
+const utilitiesController = require('../controllers/utilities-controller');
 
 const medicineController = new MedicineController();
 const userController = new UserController();
+const utilityController = new utilitiesController();
 
 router.get('/', isAdminMiddleware, async (req, res) => {
   try {
@@ -104,10 +106,21 @@ router.post('/addOption', (req, res) => medicineController.createOption(req, res
 
 router.post('/addValue', (req, res) => medicineController.createValue(req, res))
 
+router.get('/manageNavbar', async (req, res) => {
+  try {
+    const navigationLinks = await utilityController.getAllNavs();
+
+    res.render('managenavbar', { navigationLinks });
+  } catch (error) {
+    console.error('Error in manageNavbar route:', error.message);
+    res.render('404', { message: 'An error occurred while loading the manageNavbar page.', title: 'Error getting navigation links', errcode: '405' });
+  }
+});
+
+
 
 
 module.exports = router;
 
-module.exports = router;
 
 

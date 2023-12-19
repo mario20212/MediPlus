@@ -19,14 +19,14 @@ class utilitiesController {
             console.error('Error creating Nav:', error.message);
             res.status(500).json({ success: false, error: 'An error occurred while creating the Nav' });
         }
-
     }
+
     async getAllNavs(req, res) {
         try {
             const result = await this.navModel.getAll();
-    
+
             if (result && result.length > 0) {
-                
+                res.status(200).json({ success: true, data: result });
             } else {
                 res.status(404).json({ success: false, error: 'No navigation items found.' });
             }
@@ -35,8 +35,6 @@ class utilitiesController {
             res.status(500).json({ success: false, error: 'An error occurred while fetching navigation items.' });
         }
     }
-
-
-
 }
 
+module.exports = utilitiesController;
