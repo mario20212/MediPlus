@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
     <link rel="stylesheet" href="/css/cart.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-272764433-1"></script>
@@ -26,25 +27,43 @@
                     <div class="order-info-content">
                         <h2>Order Summary</h2>
                         <div class="line"></div>
-                        <% if (cart.products.length> 0) {
+                        <% if (cart.length> 0) {
             %>
                             <form id="orderForm" action="/shippingform/checkout" method="post">
                                 <table class="order-table">
                                     <tbody>
-                                        <% cart.products.forEach((product, index)=> {
+                                        <% cart.forEach((product, index)=> {
                 %>
                                             <tr>
                                                 <td>
                                                     <div class="product-wrapper">
-                                                        <div class="image-container"> <img src="<%= product.imageurl %>" alt="Product Image" style="width: 200px; height: 200px;"> </div>
+                                                        <div class="image-container"> <img src="<%= product['Image URL'] %>" alt="Product Image" style="width: 200px; height: 200px;"> </div>
                                                         <div class="product-details">
                                                             <div class="product-name">
-                                                                <%=product.name %>
+                                                                <%=['Medicine Name'] %>
                                                             </div>
                                                             <div class="product-price"> EGP
-                                                                <%=product.price %>
+                                                                <%=product.Price %>
                                                             </div>
-                                                            <div class="product-quantity"> <input name="quantity[]" class="quantity-select" type="number" min="1" value="1" data-index="<%= index %>"> </div>
+                                                            <% if (options && options.length > 0) { %>
+                                                                <div class="options-container">
+                                                                    <h2>Options:</h2>
+                                                                    <% options.forEach(option => { %>
+                                                                        <div class="option">
+                                                                            <p>Name:
+                                                                                <%= option.option_name %>
+                                                                            </p>
+                                                                            <p>Value:
+                                                                                <%= option.value %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <% }); %>
+                                                                </div>
+                                                                <% } else { %>
+                                                                    <p>No options available.</p>
+                                                                    <% } %>
+                                                                        <div class="product-quantity"> <input name="quantity[]" class="quantity-select" type="number" min="1" value="1" data-index="<%= index %>"> </div>
+
                                                         </div>
                                                         <div class="delete-button">
                                                             <a href="/cart/delete/<%= product.name %>"> <img class="delete-button" src="img/delete.png" alt="Delete Product"> </a>
