@@ -28,14 +28,17 @@
     <% Medicines.forEach((medicine, index) => { %>
       <% if (index % 3 === 0 && index !== 0) { %>
         </div><div class="medicine-container">
+         
       <% } %>
       <div class="medicine-type">
+        <a href="/product/<%= medicine.id %>">
         <img src="<%= medicine['Image URL'] %>" alt="">
         <br>
         <br>
-        <h5><%= medicine['Medicine Name'] %></h5>
-        <p><strong>Price:</strong> <%= medicine.Price %> EGP</p>
-        <p><strong>Manufacturer:</strong> <%= medicine.Manufacturer %></p>
+        <h4 style="color: black; margin-left: 2px;"><%= medicine['Medicine Name'] %></h4>
+        <h5 style="color: black;"><strong>Price:</strong> <%= medicine.Price %> EGP</h5>
+        <h5 style="color: black;"><strong>Manufacturer:</strong> <%= medicine.Manufacturer %></h5>
+      </a>
       </div>
     <% }); %>
   </div>
