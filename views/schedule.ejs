@@ -130,6 +130,10 @@
           </div>
         </div>
       </div>
+      <div class="alert"  id="alert" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div class="text-alert">Saved Successfully!! Go Check it in your Profile.</div>
+      </div>
 
 
 
@@ -181,6 +185,8 @@
 
       </div>
 
+      
+
 
 
 
@@ -196,17 +202,13 @@
   <script src="./js/suggestions.js"></script>
   <script src="./js/search.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    var schedule = 5;
-  
-    function savechanges() {
-      console.log(schedule);
-    }
-  </script>
+  <script src="js/schedule.js"></script>
+
 
   <script>
     let schedule=[];
     let email=sessionStorage.getItem("email");
+
     function savechanges() {
       console.log(schedule)
 
@@ -215,7 +217,15 @@
         url: '/schedule',
         data: {schedule:schedule},
         success: (response) => {
-          console.log(response);
+          if(response.success=="Saved Successfully")
+          {
+            let alert=document.getElementById("alert");
+            alert.style.display="block"
+            setTimeout(()=>{
+              window.location.reload();
+              },2000);
+          }
+
         },
       });
     }
