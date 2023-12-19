@@ -28,7 +28,6 @@ class utilitiesController {
         try {
           const rxcuis = [];
       
-          // Call the RXCUI finder API for each drug
           for (const drugName of drugNames) {
             const response = await axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui.json?name=${drugName}`);
             if (response.data.idGroup && response.data.idGroup.rxnormId) {
@@ -41,18 +40,13 @@ class utilitiesController {
             }
           }
       
-          // Call the drug interaction API
           const interactionResponse = await axios.get(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${rxcuis.join('+')}`);
       
          
           let descriptions =[];
-      
-          // Check if any interaction data was returned
           if (interactionResponse.data.fullInteractionTypeGroup && interactionResponse.data.fullInteractionTypeGroup.length > 0) {
-            // Extract the interaction data
             const interactions = interactionResponse.data.fullInteractionTypeGroup[0].fullInteractionType.map(interaction => interaction.interactionPair);
             
-            // Extract descriptions
             descriptions = interactions.flat().map(pair => pair.description);
             
             console.log(`Interactions for ${drugNames.join(', ')}:`, interactions);
@@ -62,7 +56,6 @@ class utilitiesController {
             console.log(descriptions);
           }
           
-          // Always send the descriptions and drug names to the frontend
           res.status(200).json({ drugNames, descriptions });
           
           

@@ -14,4 +14,15 @@ router.post('/register', (req, res) => {
     Userhandler.registerNewUser(req, res);
 });
 
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            res.status(500).json({ success: false, error: 'An error occurred during logout' });
+        } else {
+            res.json({ success: true, message: 'Logout successful' });
+        }
+    });
+});
+
 module.exports = router;
