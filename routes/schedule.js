@@ -8,7 +8,7 @@ router.get('/', (req,res)=>{
 
 router.post('/', (req, res) => {
     const schedule = req.body;
-    console.log(schedule);
+    
 });  
 
 module.exports = router;
