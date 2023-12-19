@@ -52,11 +52,11 @@ The Clinic Management System is a web application designed to streamline the man
 
 4. **Run the Application:**
    ```bash
-   npm start
+   node index
    ```
 
 5. **Access the Application:**
-   - Open a web browser and navigate to `http://localhost:8080` to access the Clinic Management System.
+   - Open a web browser and navigate to `http://localhost:8080` to access the Clinic Management System (MediPlus).
 
 ## Contributors
 
