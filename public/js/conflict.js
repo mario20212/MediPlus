@@ -59,14 +59,13 @@ window.onload = function () {
   
     function sendDrugNamesToBackend() {
       var endpoint = '/conflict'; 
+      console.log(drugNames)
       
       if (drugNames.length === 2) {
-        
         $.ajax({
           url: endpoint,
           type: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ drugNames: drugNames }),
+          data: { drugNames: drugNames },
           success: function (data) {
             // Handle the response from the backend as before
             let overlay = document.querySelector('#overlay');

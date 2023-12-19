@@ -1,8 +1,9 @@
 const MedicineModel = require('../models/MedicineModel');
 const NavigationLinks = require('../models/NavigationLink');
+const axios = require('axios')
 
 class utilitiesController {
-    constructor() {
+    constructor() { 
         this.medModel = new MedicineModel();
         this.navModel = new NavigationLinks();
 
@@ -22,7 +23,7 @@ class utilitiesController {
         }
     }
     async conflict(req,res){
-        const { drugNames } = req.body; 
+        const { drugNames } = req.body;
 
         try {
           const rxcuis = [];
