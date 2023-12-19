@@ -6,6 +6,7 @@ class cart {
         this.medicineQuantity = medicineQuantity;
         this.totalPrice = 0.0;
         this.isEmpty = true;
+        console.log("construdcted new cart succefully");
 
     }
 
@@ -27,12 +28,30 @@ class cart {
 
             if (results.length > 0) {
                 const cartData = results[0];
-                this.userId = cartData.user_id;
-                this.medicineNames = JSON.parse(cartData.medicine_names);
-                this.medicineQuantity = JSON.parse(cartData.medicine_quantity);
-                this.totalPrice = cartData.total_price;
-                this.isEmpty = cartData.is_empty;
-                console.log('Cart retrieved from the database.');
+                let new_cart1;
+                if (cartData.medicine_names == "" || cartData.medicine_quantity == "") {
+                    console.log(" i am 1");
+                    new_cart1 = new cart(userId, [], []);
+                    console.log(new_cart1);
+                    return new_cart1;
+
+                } else {
+                    console.log(" i am 2");
+                    new_cart = new cart(userId, JSON.parse(cartData.medicine_names), JSON.parse(cartData.medicine_quantity))
+                    new_cart.price = new_cart.calculateTotal();
+                    if (new_cart.price == 0) {
+                        new_cart.isEmpty = true
+                    } else {
+                        new_cart.isEmpty = false;
+                    }
+                    return new_cart;
+
+                }
+
+
+
+
+
             } else {
                 console.log('Cart not found in the database.');
             }

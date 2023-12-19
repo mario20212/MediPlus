@@ -3,6 +3,7 @@ const UserModel = require('../models/UserModel');
 const Cart = require('../models/cart');
 
 class UserController {
+    cart = new Cart(99);
     constructor() {
         this.userModel = new UserModel();
     }
@@ -43,9 +44,12 @@ class UserController {
                 const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
                 if (isPasswordMatch) {
                     req.session.isAdmin = user.isAdmin === 1;
-                    console.log(req.session.isAdmin)
-                    cart_check = Cart.getCartByUserId(user.user_id)
-                    if (cart_check.length > 0) {
+                    console.log(req.session.isAdmin);
+                    let cart_check = 0;
+                    cart_check = await Cart.getCartByUserId(user.user_id);
+                    console.log("checking");
+                    console.log(" the cart check is " + cart_check);
+                    if (cart_check != 0 || cart_check == undefined) {
                         req.session.cart = cart_check[0];
                     } else {
                         user_cart = new Cart(user.user_id);
