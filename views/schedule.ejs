@@ -54,7 +54,6 @@
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="icon" href="img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script src="js/schedule.js"></script>
 
   </head>
 
@@ -174,9 +173,12 @@
 
           <label for="dose" class="med-label">Dose</label>
           <input type="text" id="dose" name="dose" class="med-input" required>
-
-          <button type="button" class="med-button" onclick="addMedicine()">Add Medicine</button>
+          <div style="display: flex;flex-direction: column;">
+          <button type="button" class="med-button" style="margin-bottom: 5%;" onclick="addMedicine()">Add Medicine</button>
+          <button type="button" class="med-button" onclick="savechanges()">Save Changes</button>
+          </div>
         </form>
+
       </div>
 
 
@@ -186,9 +188,6 @@
 
 
       <%- include("./partials/footer.ejs") %>
-
-
-
   </body>
 
   </html>
@@ -197,6 +196,8 @@
   <script src="./js/suggestions.js"></script>
   <script src="./js/search.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/schedule.js"></script>
+
 
 
 

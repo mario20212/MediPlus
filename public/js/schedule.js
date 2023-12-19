@@ -1,10 +1,9 @@
 // Get a reference to the <li> element with class "active"
 var activeListItem = document.querySelector('li.active');
 
-// Remove the "active" class
 activeListItem.classList.remove('active');
 let email=sessionStorage.getItem("email");
-let schedule = { value: 5 };
+let schedule =1;
 
 
 
@@ -48,7 +47,7 @@ function addMedicine() {
 }
 
   function savechanges() {
-  console.log(email)
+  console.log(schedule)
   // $.ajax({
   //   type: 'POST',
   //   url: '/schedule',
