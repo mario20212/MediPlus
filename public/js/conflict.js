@@ -123,3 +123,21 @@ window.onload = function () {
           });
         }
       }
+      function checkSeverity(descriptions) {
+        let severity;
+    
+        // Check each description for keywords
+        descriptions.forEach(description => {
+          if (description.includes('No Interactions Found')) {
+            severity = 'Minor';
+          } else if (description.includes('may')) {
+            severity = 'Monitor closely';
+          } else if (description.includes('Later')) {
+            severity = 'Serious';
+          } else {
+            severity = 'Don’t use together';
+          }
+        });
+        return severity;
+      }
+    };
