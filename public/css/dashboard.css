@@ -280,7 +280,8 @@ tbody tr td {
 form {
     max-width: 600px;
     text-align: center;
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-left: 100px;
  }
  
  form input, form textarea {
@@ -300,7 +301,7 @@ form {
     box-shadow: 0 0px 2px rgba(255, 0, 0, 1) !important;
  }
  
- form #input-submit {
+ form #input-submit, form #submit-option {
     color: white;
     background: red;
     cursor: pointer;
@@ -346,7 +347,22 @@ form {
  .cf:after {
     clear: both;
  }
- 
+
+ .medicine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+ }
+ .add-med-option{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+ }
+ .locked-input {
+    background-color: #f0f0f0;
+}
 
 
 @media (max-width: 769px) {

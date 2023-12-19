@@ -39,6 +39,7 @@
           <h3>
             <%= medicine.Manufacturer %>
           </h3>
+
           <h5 class="comp-title">Composition</h5>
           <ul class="composition">
             <% medicine.CompositionArray.forEach(component=> { %>
@@ -46,6 +47,14 @@
                 <%= component %>
               </li>
               <% }) %>
+          </ul>
+          <h5 class="options">Options Available</h5>
+          <ul class="Options">
+            <% option.forEach(option => { %>
+              <li class="ingredient">
+                <%= option.option_name %>/s: <%= option.value %>
+              </li>
+            <% }) %>
           </ul>
           <h5 class="comp-title">Uses</h5>
           <ul class="composition">
@@ -82,7 +91,7 @@
             <div class="product-card">
               <div class="product-image">
                 <img src="<%= medicine['Image URL'] %>" class="product-thumb" alt="">
-                <a href="/product/<%= medicine.id %>"> <!-- Add anchor tag with href -->
+                <a href="/product/<%= medicine.id %>">
                   <button class="card-btn">Check out</button>
                 </a>
               </div>
@@ -103,7 +112,7 @@
           <div class="product-card">
             <div class="product-image">
               <img src="<%= relatedMedicines['Image URL'] %>" class="product-thumb" alt="">
-              <a href="/product/<%= relatedMedicines.id %>"> <!-- Add anchor tag with href -->
+              <a href="/product/<%= relatedMedicines.id %>">
                 <button class="card-btn">Check out</button>
               </a>
             </div>
@@ -129,9 +138,6 @@
 
     <%- include("./partials/footer.ejs") %>
 </body>
-<script>
-  console.log('relatedMedicines:', <%= JSON.stringify(relatedMedicines, null, 2) %>);
-</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

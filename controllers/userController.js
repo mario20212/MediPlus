@@ -39,6 +39,7 @@ class UserController {
       if (user) {
         const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
         if (isPasswordMatch) {
+          req.session.userId = user.user_id;
           req.session.isAdmin = user.isAdmin === 1;
           console.log(req.session.isAdmin)
           res.send({ success: "true", data: user });
@@ -103,7 +104,6 @@ class UserController {
     console.log('in controller');
     const { email, username, password, role } = req.body;
 
-    // Validate role input
     const isAdmin = role.toLowerCase() === 'admin' ? 1 : 0;
 
     try {
@@ -114,8 +114,8 @@ class UserController {
         }
 
         userToUpdate.username = username;
-        userToUpdate.password = await bcrypt.hash(password, 10); // Hash the new password
-        userToUpdate.isAdmin = isAdmin; // Set the isAdmin field based on the validated role
+        userToUpdate.password = await bcrypt.hash(password, 10);
+        userToUpdate.isAdmin = isAdmin;
 
         await this.userModel.updateUser(userToUpdate);
 

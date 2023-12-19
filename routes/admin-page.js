@@ -63,6 +63,49 @@ router.post('/update-user', async (req, res) => {
   }
 });
 
+router.post('/addMedicine', async (req, res) => {
+  try {
+    const {
+      MedicineName,
+      medicine_type,
+      Composition,
+      Uses,
+      Side_effects,
+      Manufacturer,
+      Price,
+      Quantity
+    } = req.body;
+
+    const medicineData = {
+      MedicineName,
+      medicine_type,
+      Composition,
+      Uses,
+      Side_effects,
+      Manufacturer,
+      Price,
+      Quantity
+    };
+    console.log('testing id', req.session.userId);  
+    const result = await medicineController.addMedicine(medicineData, req.session.userId);
+
+    if (result.success) {
+      res.json({ success: true });
+    } else {
+      throw new Error('Failed to add medicine');
+    }
+  } catch (error) {
+    console.error('Error adding medicine:', error.message);
+    res.status(500).json({ success: false, error: 'An error occurred while adding the medicine' });
+  }
+});
+
+router.post('/addOption', (req, res) => medicineController.createOption(req, res))
+
+router.post('/addValue', (req, res) => medicineController.createValue(req, res))
+
+
+
 module.exports = router;
 
 module.exports = router;

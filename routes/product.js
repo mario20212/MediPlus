@@ -9,15 +9,16 @@ router.get('/:medicineId', async(req, res) => {
 
     try {
         const { medicine, relatedMedicines } = await medicineController.getMedicineById(medicineId);
-        // const option= await medicineController.getMedicineOptionsById(medicineId);
-        console.log('testing here: ', relatedMedicines)
+        const result = await medicineController.getMedOptionsByID(medicineId);
+        console.log('testing here:', result);
 
-        res.render('product_page', { medicine, relatedMedicines }); // options: option
+        res.render('product_page', { medicine, relatedMedicines, option: result });
 
     } catch (error) {
-        console.error('Error processing the request:', error.message);
+        console.error('Error processing the request router:', error.message);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 module.exports = router;

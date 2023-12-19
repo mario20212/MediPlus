@@ -2,6 +2,27 @@ const { query } = require('../database/MySQL-connection');
 const tableName = 'mediplus.medicine_details';
 
 class MedicineModel {
+  constructor(
+    id = 0,
+    MedicineName = '',
+    medicine_type = '',
+    Composition ='',
+    Uses ='',
+    Side_effects ='',
+    Manufacturer = '',
+    Price = 0.0,
+    Quantity = 0
+  ) {
+    this.id = id
+    this.MedicineName = MedicineName;
+    this.medicine_type = medicine_type;
+    this.Composition = Composition;
+    this.Uses = Uses;
+    this.Side_effects = Side_effects;
+    this.Manufacturer = Manufacturer;
+    this.Price = Price;
+    this.Quantity = Quantity;
+  }
   async getRowCount() {
     try {
       const [result] = await query('SELECT COUNT(*) as rowCount FROM ??', [tableName]);
@@ -106,21 +127,64 @@ class MedicineModel {
   async getMedicineOptionsById(medicineId) {
     try {
       const optionsQuery = `
-      SELECT o.option_name, mo.value
-      FROM options o
-      INNER JOIN medicine_options mo ON o.id = mo.option_id
-      WHERE mo.medicine_id = ?;
-    `;
+        SELECT o.option_name, mo.value
+        FROM options o
+        INNER JOIN medicine_options mo ON o.id = mo.option_id
+        WHERE mo.medicine_id = ?;
+      `;
 
       const result = await query(optionsQuery, [medicineId]);
-      return result;
+      console.log('Model', result)
+      return { result };
     } catch (error) {
       console.error('Error retrieving medicine options:', error);
       throw error;
     }
   }
 
-
+  async addMedicine(userID) {
+    try {
+      console.log(this)
+      const [maxIdResult] = await query('SELECT MAX(id) AS maxId FROM ??', [tableName]);
+      const maxId = maxIdResult.maxId || 0;
+  
+      const newId = maxId + 1;
+  
+      const insertQuery = 'INSERT INTO ?? SET ?';
+      const result = await query(insertQuery, [tableName, {
+        id: newId,
+        'Medicine Name': this.id.MedicineName,
+        medicine_type: this.id.medicine_type,
+        Composition: this.id.Composition,
+        Uses: this.id.Uses,
+        Side_effects: this.id.Side_effects,
+        Manufacturer: this.id.Manufacturer,
+        Price: this.id.Price,
+        Quantity: this.id.Quantity,
+        'Excellent Review %': 0,
+        'Average Review %': 0,
+        'Poor Review %': 0,
+        AddedByUserID: 12,
+        UpdatedByUserID: 12
+      }]);
+    
+      console.log('Insert Result:', result);
+    
+      if (!result || result.affectedRows !== 1) {
+        throw new Error('Failed to add medicine to the database');
+      }
+    
+      return newId;
+    } catch (error) {
+      console.error('In Model Error adding medicine:', error.message);
+      throw error;
+    }
   }
+  
+  
+  
+
+
+}
 
 module.exports = MedicineModel;

@@ -8,7 +8,7 @@ class System {
     async sendEmail(toEmail, message) {
         try {
             const transporter = nodemailer.createTransport({
-                service: 'gmail', // Example: 'gmail', 'outlook', etc.
+                service: 'gmail',
                 auth: {
                     user: "bassem2108471@miuegypt.edu.eg",
                     pass: "25102002bassem18",
