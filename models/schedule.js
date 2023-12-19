@@ -12,7 +12,10 @@ class schedule
         this.whenToTakeValues = whenToTakeValues;
     }
 
-    
+    async save()
+    {
+        await query('INSERT INTO schedule (table_id, email, medicineName,dosage,wtt) VALUES (?, ?, ?, ?, ?)', [this.id, this.user_email, this.medicineName, this.dosage, this.whenToTakeValues]);
+    }
     
     
 
