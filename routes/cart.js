@@ -2,6 +2,7 @@ const Router = require('express');
 const router = Router();
 const cart = require('../models/cart');
 const product = require('../models/product');
+const MedicineModel = require('../models/MedicineModel');
 const product1 = new product(
     'Product Name',
     'Composition details',
@@ -28,8 +29,22 @@ const product3 = new product('Product Name',
 const products = [product1, product2, product3];
 const cart1 = new cart(1, 1, products);
 router.get('/', (req, res) => {
+    console.log("i am in router and cart session is " + req.session.cart);
     res.render('cart', {
-        cart: cart1
+        cart: req.session.cart,
+        options: (req.session.carttts === undefined ? "" : req.session.usersss)
+    });
+})
+router.get('/addtocart/:med_name', async(req, res) => {
+
+    med_name = req.params.med_name;
+    req.session.cart = await cart.addToCart(med_name, req.session.cart);
+
+    array = await MedicineModel.getMedicinesarray(req.session.cart.medicine_names);
+    console.log(array);
+    res.render('cart', {
+        cart: array,
+        options: (req.session.carttts === undefined ? "" : req.session.usersss)
     });
 })
 
