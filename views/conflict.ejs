@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drug Interaction Detection</title>
+  <script src="https://kit.fontawesome.com/854a317bd6.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="stylesheet" href="../css/conflict.css">
+  <script src="../js/conflict.js"></script>
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+    <div class="conflict-container">
+      <header class="container1">
+        <h1 class="interact_text"> Interaction Checker </h1>
+        <div class="search">
+          <input class="search-bar" type="text" placeholder="Enter drug name" />
+          <span class="icon_span">
+            <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #cccce7;"></i>
+          </span>
+          <div class="tags-container"></div>
+        </div>
+      </header>
+      <div class="ic-search-content">
+        <div class="output">
+          <div class="ic-intractions">
+            <h2 class="ic-result"></h2>
+          </div>
+          <div class="legend-section"><span class="level level-4 level-disable"><span class="color"></span><span
+                class="sevearity">Don’t use together</span></span><span class="level level-3 level-disable"><span
+                class="color"></span><span class="sevearity">Serious</span></span><span
+              class="level level-2 level-disable"><span class="color"></span><span class="sevearity">Monitor
+                closely</span></span><span class="level level-1 level-disable"><span class="color"></span><span
+                class="sevearity">Minor</span></span>
+          </div>
+          <div class="inteactions-section"><!----><!---->
+            <div class="severity-level">
+              <h3 class="severity-text"></h3>
+              <p class="interaction-strength"></p>
+              <div class="severity-message">
+                <h3 class="searched-for"></h3>
+                <div>
+                  <div class="interaction-message init-result-checker">
+                    <p class="interaction-strength interaction-description"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ic-disclaimer">
+          <p><strong>DISCLAIMER</strong>: The information contained herein should NOT be used as a substitute for the
+            advice
+            of an appropriately qualified and licensed physician or other health care provider.
+          </p>
+        </div>
+        <div class="loader"></div>
+        <div id="overlay" style="display: none;"></div>
+        <div>
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <div class="text-alert"><strong>Alert!</strong> Medicine is not found or check Medicine name.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+</body>
+
+</html>

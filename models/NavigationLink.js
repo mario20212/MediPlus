@@ -38,6 +38,7 @@ class NavigationLinks {
         try {
             const selectQuery = 'SELECT * FROM ?? ORDER BY display_order';
             const result = await query(selectQuery, [tableName]);
+            console.log('result in model:', result)
             return result;
         } catch (error) {
             console.error('Error retrieving all navigation links:', error.message);

@@ -16,7 +16,7 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 3600000 }
+    cookie: { maxAge: 36000000 }
 }));
 
 app.use((req, res, next) => {
@@ -47,6 +47,7 @@ app.use('/system', isLoggedIn, require('./routes/system.js'))
 app.use('/view_all', isLoggedIn, require('./routes/view_all.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/profile', require('./routes/profile'))
+app.use('/conflict', isLoggedIn, require('./routes/conflict.js'))
 
 app.listen(8080, () => {
     console.log("Server is running.....");
