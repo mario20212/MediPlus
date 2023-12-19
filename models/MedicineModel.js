@@ -102,6 +102,41 @@ class MedicineModel {
             throw error;
         }
     }
+    async getMedicinesByName(productName) {
+        try {
+            const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
+
+            const result = await query(queryString, productName);
+
+            return result[0];
+        } catch (error) {
+            console.error(`Error getting medicines by uses:`, error.message);
+            throw error;
+        }
+    }
+    static async getMedicinesarray(productNames) {
+        try {
+            let results = [];
+            for (let i = 0; i < productNames.length; i++) {
+                const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
+                const result = await query(queryString, productNames[i]);
+                if (result != "" && result != undefined && result != []) {
+                    results.push(result[0]);
+
+                }
+
+            }
+
+
+
+
+            return results;
+        } catch (error) {
+            console.error(`Error getting array `, error.message);
+            throw error;
+        }
+    }
+
     async getMedicineOptionsById(medicineId) {
         try {
             const optionsQuery = `
