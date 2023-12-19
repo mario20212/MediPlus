@@ -2,7 +2,7 @@
 var activeListItem = document.querySelector('li.active');
 
 activeListItem.classList.remove('active');
-let email=sessionStorage.getItem("email");
+
 
 
 
@@ -41,7 +41,7 @@ function addMedicine() {
     var containerElement = document.createElement('div');
     containerElement.appendChild(pElement);
     existingElement.append(containerElement);
-    schedule.push({medicineName:medicineName,id:id,dose:dose,whenToTakeValues:whenToTakeValues[i]})
+    schedule.push({email:email,usermedicineName:medicineName,id:id,dose:dose,whenToTakeValues:whenToTakeValues[i]})
     
   }
 }
