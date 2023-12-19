@@ -6,6 +6,6 @@ router.get('/', (req,res)=>{
     res.render('conflict');
 });
 
-router.post('/', async (req,res) =>utilityController.conflict(req,res))
+router.post('/', async (req,res) => await utilityController.conflict(req,res))
 
 module.exports = router;
