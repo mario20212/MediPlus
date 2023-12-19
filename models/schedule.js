@@ -31,33 +31,32 @@ class Schedule {
 
         allSchedules.forEach(schedule => {
             try {
-                if (schedule.wtt == "1beforeBreakfast" && currentHour === 1 && currentMinutes === 45) {
-                    console.log("i am in first if in email send ");
-                    const message = `It's time to take ${this.dosage} pills of your medicine (${this.medicineName}) now.`;
+                if (schedule.wtt == "1beforeBreakfast" && currentHour === 1 && currentMinutes === 56) {
 
+                    const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
                     const system = new System();
                     system.sendEmail(schedule.email, message);
                 } else if (schedule.whenToTakeValues == "2afterBreakfast" && currentHour === 12) {
                     // If the current hour is in the specified options, send the email reminder
-                    const message = `It's time to take ${this.dosage} pills of your medicine (${this.medicineName}) now.`;
+                    const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
                 } else if (schedule.whenToTakeValues == "3beforeLunch" && currentHour === 15) {
                     // If the current hour is in the specified options, send the email reminder
-                    const message = `It's time to take ${this.dosage} pills of your medicine (${this.medicineName}) now.`;
+                    const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
                 } else if (schedule.whenToTakeValues == "4afterLunch" && currentHour === 18) {
                     // If the current hour is in the specified options, send the email reminder
-                    const message = `It's time to take ${this.dosage} pills of your medicine (${this.medicineName}) now.`;
+                    const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
                 } else if (schedule.whenToTakeValues == "5beforeDinner" && currentHour === 21) {
                     // If the current hour is in the specified options, send the email reminder
-                    const message = `It's time to take ${this.dosage} pills of your medicine (${this.medicineName}) now.`;
+                    const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
