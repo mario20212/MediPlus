@@ -6,7 +6,7 @@ if (ongo == 'true') {
     console.log("hreee")
     const nameeElement = document.getElementById('namee');
     nameeElement.innerHTML = `<p style="font-size: 16px"> Welcome ${username}</p>`;
-    nameeElement.setAttribute('href', '/');
+    nameeElement.setAttribute('href', '/profile');
     document.getElementById("logout").style.display="flex";
 }
 
