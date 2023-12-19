@@ -54,3 +54,14 @@ window.onload = function () {
         }
       }
     });
+    function sendDrugNamesToBackend() {
+        var endpoint = 'http://localhost:3000'; 
+        
+        if (drugNames.length === 2) {
+          
+          $.ajax({
+            url: endpoint,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ drugNames: drugNames }),
+            success: function (data) {
