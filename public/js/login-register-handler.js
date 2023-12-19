@@ -48,6 +48,7 @@ $(document).ready(() => {
             sessionStorage.setItem('ongo', response.success);
             sessionStorage.setItem('username', response.data.username);
             sessionStorage.setItem('email', response.data.email);
+            sessionStorage.setItem('id', response.data.user_id);
             if(response.data.isAdmin === 1){
               sessionStorage.setItem('isAdmin', true);
             } else{

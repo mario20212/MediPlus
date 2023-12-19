@@ -47,6 +47,7 @@ class UserController {
                 const isPasswordMatch = await bcrypt.compare(loginData.password, user.password);
                 if (isPasswordMatch) {
                     req.session.isAdmin = user.isAdmin === 1;
+                    req.session.username = user.username
                     console.log(req.session.isAdmin);
                     let cart_check = 0;
                     cart_check = await Cart.getCartByUserId(user.user_id);
