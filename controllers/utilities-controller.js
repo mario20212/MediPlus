@@ -25,6 +25,7 @@ class utilitiesController {
         try {
             const result = await this.navModel.getAll();
 
+            console.log('result in model:', result)
             if (result && result.length > 0) {
                 res.status(200).json({ success: true, data: result });
             } else {
