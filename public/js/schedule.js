@@ -3,16 +3,6 @@ var activeListItem = document.querySelector('li.active');
 
 activeListItem.classList.remove('active');
 
-
-
-
-
-
-
-
-
-
-
 function addMedicine() {
 
   var id;
