@@ -4,16 +4,7 @@ const UserController = require('../controllers/userController');
 
 const Userhandler = new UserController();
 
-const clearSessionStorage = (req, res, next) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('Error clearing session storage:', err);
-        }
-        next();
-    });
-};
-
-router.get('/', clearSessionStorage, (req, res) => {
+router.get('/', (req, res) => {
     res.render('register');
 });
 
