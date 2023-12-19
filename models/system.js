@@ -16,8 +16,8 @@ class System {
             });
 
             const mailOptions = {
-                from: process.env.EMAIL_USERNAME,
-                to: "imposterjump@gmail.com",
+                from: "bassem2108471@miuegypt.edu.eg",
+                to: toEmail,
                 subject: 'Reminder: Take your medicine',
                 text: message || 'Remember to take your medicine now.',
             };
