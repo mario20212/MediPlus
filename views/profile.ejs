@@ -19,7 +19,7 @@
                   <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold"> UserNameeee   </span>
+                  <span class="mb-0 text-sm  font-weight-bold"> UserNameeee </span>
                 </div>
               </div>
             </a>
@@ -225,3 +225,24 @@
     </div>
   </footer>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script>
+  let email = sessionStorage.getItem("email");
+  console.log(email)
+  $(document).ready(function() {
+  $.ajax({
+    type: 'POST',
+    url: '/profile',
+    data: {email:email},
+    success: function(response) {
+
+    }
+  });
+});
+
+
+</script>
+
