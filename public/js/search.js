@@ -43,7 +43,7 @@ function select(element) {
         // webLink = `https://www.google.com/search?q=${selectData}`;
         // linkTag.setAttribute("href", webLink);
         // linkTag.click();
-        window.location.href = `/medicine?query=${encodeURIComponent(selectData)}`;
+        window.location.href = `/product/${encodeURIComponent(selectData)}`;
     }
     searchWrapper.classList.remove("active");
 }
@@ -73,6 +73,28 @@ function showSuggestions(list) {
 var searchListItem = document.querySelector('li a[href="/search"]').parentNode;
 searchListItem.classList.add('active');
 
+
+
+
+// $(document).ready(function() {
+//     $('#search-form').submit(function(event) {
+//         event.preventDefault();
+
+//         var searchTerm = $('#medicineName').val();
+//         var url = '/product/' + encodeURIComponent(searchTerm);
+
+//         $.ajax({
+//             url: url,
+//             type: 'POST', 
+//             success: function(response) {
+//                 console.log(response);
+//             },
+//             error: function(error) {
+//                 console.error('Error:', error);
+//             }
+//         });
+//     });
+// });
 
 
 

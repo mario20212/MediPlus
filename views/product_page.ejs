@@ -2,114 +2,145 @@
 <html lang="en">
 
 <head>
-  <!-- Meta Tags -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="keywords" content="Site keywords here">
-  <meta name="description" content="">
-  <meta name='copyright' content=''>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Mediplus</title>
-  <base href="/">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- <link rel="stylesheet" href="css/responsive.css">
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Site keywords here">
+    <meta name="description" content="">
+    <meta name='copyright' content=''>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mediplus</title>
+    <base href="/">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css">
             <link rel="stylesheet" href="./css/fonts.css">
             <link rel="stylesheet" href="./css/magnific-popup.css"> -->
-  <link rel="stylesheet" href="./css/med_product.css">
-  <link rel="icon" href="img/favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="./css/med_product.css">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <body>
-  <%- include("./partials/nav.ejs") %>
-    <main class="med-container">
-      <div class="left-column">
-        <img data-image="red" class="active" src="<%=medicine['Image URL'] %>" alt="">
-      </div>
+    <%- include("./partials/nav.ejs") %>
+        <main class="med-container">
+            <div class="left-column">
+                <img data-image="red" class="active" src="<%=medicine['Image URL'] %>" alt="">
+            </div>
 
-      <div class="right-column">
-        <div class="product-description">
-          <span>
+            <div class="right-column">
+                <div class="product-description">
+                    <span>
             <%= medicine.medicine_type %>
           </span>
-          <h1>
-            <%= medicine['Medicine Name'] %>
-          </h1>
-          <h3>
-            <%= medicine.Manufacturer %>
-          </h3>
-          <h5 class="comp-title">Composition</h5>
-          <ul class="composition">
-            <% medicine.CompositionArray.forEach(component=> { %>
-              <li class="ingredient">
-                <%= component %>
-              </li>
-              <% }) %>
-          </ul>
-          <h5 class="comp-title">Uses</h5>
-          <ul class="composition">
-            <% medicine.UsesArray.forEach(use=> { %>
-              <li class="ingredient">
-                <%= use %>
-              </li>
-              <% }) %>
-          </ul>
-        </div>
-        <div class="schedule-config">
-          <a href="/schedule">Want to create a schedule with this medicine? Click here to try out</a>
-        </div>
-        <div class="product-price">
-          <span>
+                    <h1>
+                        <%= medicine['Medicine Name'] %>
+                    </h1>
+                    <h3>
+                        <%= medicine.Manufacturer %>
+                    </h3>
+
+                    <h5 class="comp-title">Composition</h5>
+                    <ul class="composition">
+                        <% medicine.CompositionArray.forEach(component=> { %>
+                            <li class="ingredient">
+                                <%= component %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <h5 class="options">Options Available</h5>
+                    <ul class="Options">
+                        <% option.forEach(option => { %>
+                            <li class="ingredient">
+                                <%= option.option_name %>/s:
+                                    <%= option.value %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <h5 class="comp-title">Uses</h5>
+                    <ul class="composition">
+                        <% medicine.UsesArray.forEach(use=> { %>
+                            <li class="ingredient">
+                                <%= use %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+                <div class="schedule-config">
+                    <a href="/schedule">Want to create a schedule with this medicine? Click here to try out</a>
+                </div>
+                <div class="product-price">
+                    <span>
             <%= medicine.Price %> EGP
           </span>
-          <% if (medicine.Quantity> 0) { %>
-            <a href="#" class="cart-btn">Add to cart</a>
-            <% } else { %>
-              <span class="out-of-stock" style="color: red;">Out of Stock</span>
-              <% } %>
-        </div>
-      </div>
-    </main>
-    <section class="product">
-      <h2 class="product-category">Similar Products</h2>
-      <div class="product-border"></div>
-      <button class="pre-btn"><img src="/img/arrow.png" alt=""></button>
-      <button class="nxt-btn"><img src="/img/arrow.png" alt=""></button>
-      <div class="product-container">
-        <% if (relatedMedicines.length > 0) { %>
-          <% relatedMedicines.forEach(medicine=> { %>
-            <div class="product-card">
-              <div class="product-image">
-                <img src="<%=medicine['Image URL'] %>" class="product-thumb" alt="">
-                <button class="card-btn">Check out</button>
-              </div>
-              <div class="product-info">
-                <h2 class="product-brand">
-                  <%= medicine['Medicine Name'] %>
-                </h2>
-                <p class="product-short-description">
-                  <%= medicine.medicine_type %>
-                </p>
-                <span class="price">
+                    <% if (medicine.Quantity> 0) { %>
+                        <a href="/cart/addtocart/<%= medicine['Medicine Name'] %>" class="cart-btn">Add to cart</a>
+                        <% } else { %>
+                            <span class="out-of-stock" style="color: red;">Out of Stock</span>
+                            <% } %>
+                </div>
+            </div>
+        </main>
+        <section class="product">
+            <h2 class="product-category">Similar Products</h2>
+            <div class="product-border"></div>
+            <button class="pre-btn"><img src="/img/arrow.png" alt=""></button>
+            <button class="nxt-btn"><img src="/img/arrow.png" alt=""></button>
+            <div class="product-container">
+                <% if (Array.isArray(relatedMedicines) && relatedMedicines.length > 0) { %>
+                    <% relatedMedicines.forEach(medicine => { %>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="<%= medicine['Image URL'] %>" class="product-thumb" alt="">
+                                <a href="/product/<%= medicine.id %>">
+                                    <button class="card-btn">Check out</button>
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h2 class="product-brand">
+                                    <%= medicine['Medicine Name'] %>
+                                </h2>
+                                <p class="product-short-description">
+                                    <%= medicine.medicine_type %>
+                                </p>
+                                <span class="price">
                   <%= medicine.Price %> EGP
                 </span>
-              </div>
-              <% }) %>
-                <% } else { %>
-                  <div class="no-related-medicines">
-                    <p>No related medicines available.</p>
-                  </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } else if (!Array.isArray(relatedMedicines) && typeof relatedMedicines === 'object') { %>
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="<%= relatedMedicines['Image URL'] %>" class="product-thumb" alt="">
+                                        <a href="/product/<%= relatedMedicines.id %>">
+                                            <button class="card-btn">Check out</button>
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <h2 class="product-brand">
+                                            <%= relatedMedicines['Medicine Name'] %>
+                                        </h2>
+                                        <p class="product-short-description">
+                                            <%= relatedMedicines.medicine_type %>
+                                        </p>
+                                        <span class="price">
+                <%= relatedMedicines.Price %> EGP
+              </span>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                    <div class="no-related-medicines">
+                                        <p>No related medicines available.</p>
+                                    </div>
+                                    <% } %>
             </div>
-            <% } %>
-      </div>
-    </section>
+        </section>
 
-    <%- include("./partials/footer.ejs") %>
+        <%- include("./partials/footer.ejs") %>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="./js/product_page.js"></script>
 
 </html>

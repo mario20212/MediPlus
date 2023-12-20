@@ -2,34 +2,45 @@ const Router = require('express');
 const router = Router();
 const cart = require('../models/cart');
 const product = require('../models/product');
-const product1 = new product(
-    'Product Name',
-    'Composition details',
-    'Uses information',
-    'Side effects description',
-    "https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/cropped/hg4gkjmjrg9956tqtmoz.jpg",
-    'Manufacturer',
-    5, 3, 2
-);
-const product2 = new product('Product Name',
-    'Composition details',
-    'Uses information',
-    'Side effects description',
-    "https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/cropped/hg4gkjmjrg9956tqtmoz.jpg",
-    'Manufacturer',
-    5, 3, 2);
-const product3 = new product('Product Name',
-    'Composition details',
-    'Uses information',
-    'Side effects description',
-    "https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/cropped/hg4gkjmjrg9956tqtmoz.jpg",
-    'Manufacturer',
-    5, 3, 2);
-const products = [product1, product2, product3];
-const cart1 = new cart(1, 1, products);
-router.get('/', (req, res) => {
+const MedicineModel = require('../models/MedicineModel');
+router.get('/', async(req, res) => {
+
+    meds = await cart.getCartByUserId(req.session.userId);
+    array = await MedicineModel.getMedicinesarray(meds);
+    console.log(array);
+
     res.render('cart', {
-        cart: cart1
+        cart: array,
+        quantity_array: meds,
+        options: (req.session.carttts === undefined ? "" : req.session.usersss)
+    });
+})
+router.get('/addtocart/:med_name', async(req, res) => {
+
+    med_name = req.params.med_name;
+    console.log("the user id " + req.session.userId);
+    await cart.addToCart(med_name, req.session.userId);
+    meds = await cart.getCartByUserId(req.session.userId);
+    array = await MedicineModel.getMedicinesarray(meds);
+    console.log(array);
+    res.render('cart', {
+        cart: array,
+        quantity_array: meds,
+        options: (req.session.carttts === undefined ? "" : req.session.usersss)
+    });
+})
+router.get('/delete/:med_name', async(req, res) => {
+
+    med_name = req.params.med_name;
+    console.log("the user id " + req.session.userId);
+    await cart.removeFromCart(med_name, req.session.userId);
+    meds = await cart.getCartByUserId(req.session.userId);
+    array = await MedicineModel.getMedicinesarray(meds);
+    console.log(array);
+    res.render('cart', {
+        cart: array,
+        quantity_array: meds,
+        options: (req.session.carttts === undefined ? "" : req.session.usersss)
     });
 })
 

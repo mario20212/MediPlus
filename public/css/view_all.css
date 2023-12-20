@@ -1,17 +1,111 @@
-.view-all-button {
-    background-color: rgb(27, 107, 245);
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute;
-    bottom: -150px; 
-    left: 350px;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.view-all-button:hover {
-    background-color: #1b6bf5; 
+h4 {
+  font-size: 24px;
+  color: #007BFF;
+  margin-bottom: 20px;
+  margin-left: 50px;
 }
+
+.medicine-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.medicine-type {
+  box-sizing: border-box;
+  width: 30%;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease-in-out; 
+} 
+
+.medicine-type:hover {
+  transform: scale(1.05);
+}
+
+.medicine-type img {
+  width: 100%;
+  height: 250px; /* Set a fixed height for all images */
+  object-fit: contain; /* Choose 'contain' or 'cover' based on your preference */
+  border-radius: 8px; /* Rounded corners for images */
+}
+
+h5 {
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin: 8px 0;
+}
+
+strong {
+  color: #007BFF;
+}
+
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+}
+
+.pagination a {
+  color: #007bff;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin: 0 5px;
+}
+
+.pagination a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+/* Add this to your existing CSS */
+
+.medicine-type {
+  background-color: #f8f8f8c9; /* Set a slightly darker background color */
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.medicine-type h5 {
+  font-family: 'Roboto', sans-serif; /* Replace 'Your Different Font' with the actual font you want to use */
+}
+
+.medicine-type p strong {
+  font-weight: bold;
+}
+
+.medicine-type p {
+  margin: 8px 0;
+}
+

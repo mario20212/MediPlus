@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <%- include("./partials/side-panel.ejs") %>
+    <section id="interface">
+        <%- include("./partials/search-bar.ejs") %>
+            <div id="dynamic-content">
+                <h3 class="i-name">
+                    Manage Navigation Links
+                </h3>
+                <form id="addNavlink" class="add-nav">
+                    <div class="full cf">
+                        <input type="text" id="labelNav" name="label" placeholder="Label">
+                        <input type="text" id="urlNav" name="url" placeholder="URL">
+                        <input type="number" id="display_order" name="order" placeholder="Order of Display">
+                        <input type="submit" value="Add Nav link" id="input-submit">
+                    </div>
+                    <div id="error-message" style="color: red;"></div>
+                </form>
+                <dir class="board">
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <td>Label</td>
+                                <td>URL</td>
+                                <td>Display Order</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% navigationLinks.forEach(link => { %>
+                                <tr id="user-row-<%= user.email %>">
+                                    <td class="people">
+                                        <div class="people-de">
+                                            <h5>
+                                                <%= link.label %>
+                                            </h5>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%= link.url %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <%= link.display_order %>
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <a href="#" style="text-decoration: none;" class="delete-user"
+                                                data-user-email="<%= user.email %>">Delete</a>
+                                        </h5>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </dir>
+            </div>
+    </section>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+</script>
+
+
+</html>

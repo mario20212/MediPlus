@@ -1,18 +1,11 @@
 // Get a reference to the <li> element with class "active"
 var activeListItem = document.querySelector('li.active');
 
-// Remove the "active" class
 activeListItem.classList.remove('active');
-
-
-
-
-
-
-
 
 function addMedicine() {
 
+  var id;
   var medicineName = document.getElementById('medicineName').value;
   var medicineType = document.getElementById('medicineType').value;
 
@@ -23,13 +16,10 @@ function addMedicine() {
       whenToTakeValues.push(whenToTakeCheckboxes[i].value);
     }
   }
-
   var dose = document.getElementById('dose').value;
-
-
   for (var i = 0; i < whenToTakeValues.length; i++) {
     number = whenToTakeValues[i].charAt(0);
-    var id = medicineType + number;
+    id = medicineType + number;
     console.log(id);
     var pElement = document.createElement('p');
     pElement.textContent = medicineName + " Dose:" + dose;
@@ -41,17 +31,8 @@ function addMedicine() {
     var containerElement = document.createElement('div');
     containerElement.appendChild(pElement);
     existingElement.append(containerElement);
+    schedule.push({email:email,usermedicineName:medicineName,id:id,dose:dose,whenToTakeValues:whenToTakeValues[i]})
+    
   }
 }
 
-function savechanges() {
-  let schedule = { value: 5 };
-  $.ajax({
-    type: 'POST',
-    url: '/schedule',
-    data: schedule,
-    success: (response) => {
-      console.log(response);
-    },
-  });
-}

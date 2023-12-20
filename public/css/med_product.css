@@ -142,6 +142,8 @@
   }
   .cart-btn:hover {
     background-color: #64af3d;
+    color: #FFFFFF;
+    text-decoration: none;
   }
 
   /* PRODUCTS */
@@ -232,7 +234,7 @@
 }
 
 .card-btn:hover {
-  background: #ff7d7d;
+  background: #358ED7;
   color: #fff;
 }
 

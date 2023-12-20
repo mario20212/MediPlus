@@ -1,42 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Meta Tags -->
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="keywords" content="Site keywords here">
-            <meta name="description" content="">
-            <meta name='copyright' content=''>
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>Mediplus</title>
-            <link rel="stylesheet" href="css/search.css">
-            <link rel="stylesheet" href="./css/fonts.css">
-            <link rel="stylesheet" href="./css/magnific-popup.css">
-            <link rel="stylesheet" href="css/view_all.css">
-            
-            <link rel="icon" href="img/favicon.png">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="keywords" content="Site keywords here">
+  <meta name="description" content="">
+  <meta name='copyright' content=''>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Mediplus</title>
+  <link rel="stylesheet" href="css/search.css">
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/magnific-popup.css">
+  <link rel="stylesheet" href="css/view_all.css">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
-    <%- include("./partials/nav.ejs") %>
+  <%- include("./partials/nav.ejs") %>
+  
+  <br>
+  <br>
+  <br>
+  <h4>View All Medicines</h4>
+  <br>
+  <div class="medicine-container">
+    <% Medicines.forEach((medicine, index) => { %>
+      <% if (index % 3 === 0 && index !== 0) { %>
+        </div><div class="medicine-container">
+         
+      <% } %>
+      <div class="medicine-type">
+        <a href="/product/<%= medicine.id %>">
+        <img src="<%= medicine['Image URL'] %>" alt="">
+        <br>
+        <br>
+        <h4 style="color: black; margin-left: 2px;"><%= medicine['Medicine Name'] %></h4>
+        <h5 style="color: black;"><strong>Price:</strong> <%= medicine.Price %> EGP</h5>
+        <h5 style="color: black;"><strong>Manufacturer:</strong> <%= medicine.Manufacturer %></h5>
+      </a>
+      </div>
+    <% }); %>
+  </div>
+
+<div class="pagination-container">
+    <div class="pagination">
+      <% if (currentPage > 1) { %>
+        <a href="/view_all?page=<%= currentPage - 1 %>">Previous</a>
+      <% } %>
+  
+      <% const startPage = Math.max(1, currentPage - 2); %>
+      <% const endPage = Math.min(totalPages, startPage + 4); %>
+  
+      <% for (let i = startPage; i <= endPage; i++) { %>
+        <a href="/view_all?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+  
+      <% if (currentPage < totalPages) { %>
+        <a href="/view_all?page=<%= currentPage + 1 %>">Next</a>
+      <% } %>
+    </div>
+  </div>
+  
+  <br>
+  <br>
+  <br>
+  <br>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <%- include("./partials/footer.ejs") %>
+  <%- include("./partials/footer.ejs") %>
 </body>
+
+
 </html>

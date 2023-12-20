@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediPlus</title>
+  <link rel="stylesheet" href="./css/ocr.css">
+</head>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+    <br>
+    <br>
+    <br>
+    <h4>Image To Text Converter</h4>
+    <br>
+    <div class="upload-container">
+      <div class="upload-left">
+        <form id="ocrForm" method="post" enctype="multipart/form-data">
+          <label for="imageUpload">Upload Image:</label>
+          <input type="file" name="image" id="imageUpload" accept="image/*">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="upload-right" id="resultContainer">
+        <h2>Converted Text:</h2>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./js/ocrHandler.js"></script>
+    <%- include("./partials/footer.ejs") %>
+</body>
+</html>

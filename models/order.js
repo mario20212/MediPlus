@@ -1,32 +1,45 @@
 const mysql = require('mysql2');
-
+const { connection, query } = require('../database/MySQL-connection');
 class Order {
-    constructor(id, useremail, products, productsquantity, prices, total_price, payment_method, address, phone_number) {
+    constructor(id, userid, useremail, products, productsquantity, total_price, payment_method, address, phone_number, first_name, last_name) {
         this.id = id;
+        this.userid = userid;
         this.useremail = useremail;
         this.products = products;
         this.productsquantity = productsquantity;
-        this.prices = prices;
         this.total_price = total_price;
         this.payment_method = payment_method;
         this.address = address;
         this.phone_number = phone_number;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     // Create an order
-    async createOrder(id, useremail, products, productsquantity, prices, total_price, payment_method, address, phone_number) {
+    static async createOrder(userid, useremail, products, productsquantity, payment_method, address, phone_number, firstname, lastname) {
         try {
-            const query = ('INSERT INTO orders (useremail, products, productsquantity, prices, total_price, payment_method, address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [id, useremail, products, productsquantity, prices, total_price, payment_method, address, phone_number]);
-            await connection.promise().execute(query, [
-                this.useremail,
-                JSON.stringify(this.products),
-                JSON.stringify(this.productsquantity),
-                JSON.stringify(this.prices),
-                this.total_price,
-                this.payment_method,
-                this.address,
-                this.phone_number
-            ]);
+            let total_price = 0;
+            let productsnames = [];
+            let productsquant = [];
+            console.log("array of meds is " + JSON.stringify(products, null, 2));
+            console.log("array ofquant is " + JSON.stringify(productsquantity, null, 2));
+
+            if (products.length > 0) {
+                products.forEach((product, index) => {
+                    total_price += product.Price * productsquantity[index].medicine_quantity;
+                    productsnames.push(product['Medicine Name']);
+                    productsquant.push(productsquantity[index].medicine_quantity);
+
+                });
+                productsnames = JSON.stringify(productsnames);
+                productsquant = JSON.stringify(productsquant);
+                total_price = JSON.stringify(total_price);
+                const query1 = 'INSERT INTO orders (firstname,lastname,email,user_id,products, products_quantity, total_price, payment_method, address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)';
+                await query(query1, [firstname, lastname, useremail, userid, productsnames, productsquant, total_price, payment_method, address, phone_number])
+            } else {
+                console.log("something wronh in arrays sent to this function");
+            }
+
             console.log('Order created successfully.');
         } catch (error) {
             console.error('Error creating order:', error);
@@ -42,14 +55,16 @@ class Order {
                 const orderData = rows[0];
                 return new Order(
                     orderData.id,
+                    orderData.userid,
                     orderData.useremail,
                     JSON.parse(orderData.products),
                     JSON.parse(orderData.productsquantity),
-                    JSON.parse(orderData.prices),
-                    orderData.total_price,
+                    JSON.parse(orderData.total_price),
                     orderData.payment_method,
                     orderData.address,
-                    orderData.phone_number
+                    orderData.phone_number,
+                    orderData.first_name,
+                    orderData.last_name
                 );
             }
             return null;
@@ -58,27 +73,49 @@ class Order {
             return null;
         }
     }
+    static async getOrdersByuserId(userid) {
+        try {
+            const query1 = 'SELECT * FROM orders WHERE user_id = ?';
+            let result = await query(query1, [userid]);
+            if (result.length > 0) {
+                result.forEach((order, index) => {
+
+                    //order.total_price = JSON.parse(order.products);
+                    //order.total_price = JSON.parse(order.products_quantity);
+
+                });
+
+            }
+            return result;
+        } catch (error) {
+            console.error('Error retrieving order:', error);
+            return null;
+        }
+    }
 
     // Update an order
-    async updateOrder() {
+    static async updateOrder(id, userid, useremail, products, productsquantity, total_price, payment_method, address, phone_number, first_name, last_name) {
         try {
-            const query = 'UPDATE orders SET useremail = ?, products = ?, productsquantity = ?, prices = ?, total_price = ?, payment_method = ?, address = ?, phone_number = ? WHERE id = ?';
+            const query = 'UPDATE orders SET user_id = ?, user_email = ?, products = ?, quantities = ?, total_price = ?, payment_method = ?, address = ?, phone_number = ?, first_name = ?, last_name = ? WHERE id = ?';
             await connection.promise().execute(query, [
-                this.useremail,
-                JSON.stringify(this.products),
-                JSON.stringify(this.productsquantity),
-                JSON.stringify(this.prices),
-                this.total_price,
-                this.payment_method,
-                this.address,
-                this.phone_number,
-                this.id
+                userid,
+                useremail,
+                JSON.stringify(products),
+                JSON.stringify(productsquantity),
+                total_price,
+                payment_method,
+                address,
+                phone_number,
+                first_name,
+                last_name,
+                id
             ]);
             console.log('Order updated successfully.');
         } catch (error) {
             console.error('Error updating order:', error);
         }
     }
+
 
     // Delete an order by ID
     static async deleteOrder(orderId) {
