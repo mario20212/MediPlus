@@ -123,7 +123,7 @@ class MedicineModel {
             throw error;
         }
     }
-    static async getMedicinesByName(productName) {
+    async getMedicinesByName(productName) {
         try {
             const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
 
