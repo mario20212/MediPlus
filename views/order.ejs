@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/orderdisplay.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-272764433-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-272764433-1');
+    </script>
+</head>
+
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+        <div class="container">
+            <div class="text2">
+                <h1>Your Orders</h1>
+                <% if (Order.length === 0) { %>
+                    <p>You have not made any orders yet.</p>
+                    <% } else { %>
+                        <% Order.forEach(order => { %>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Order</th>
+                                        <th class="product-name">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td class="product-name">
+                                            <%= order.firstname %>
+                                                <%= order.lastname %>
+                                        </td>
+                                        <td class="product-details">
+
+                                            <div>Delivery Address:
+                                                <%= order.address %>
+                                            </div>
+                                            <div>Order price:
+                                                <%= order.total_price %>
+                                            </div>
+                                            <div>Payment Method:
+                                                <%= order.payment_method %>
+                                            </div>
+                                            <div>Products;:
+                                                <%= order.products %>
+                                            </div>
+                                            <div>quantities:
+                                                <%= order.products_quantity %>
+                                            </div>
+                                            <div>phone:
+                                                <%= order.phone_number %>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <% }) %>
+                                <% } %>
+            </div>
+        </div>
+</body>
+<footer>
+
+    <%- include("./Partials/footer.ejs") %>
+</footer>
+
+</html>
