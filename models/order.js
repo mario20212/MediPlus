@@ -75,25 +75,18 @@ class Order {
     }
     static async getOrdersByuserId(userid) {
         try {
-            const query = 'SELECT * FROM orders WHERE userid = ?';
-            const [rows, fields] = await connection.promise().execute(query, [userid]);
-            if (rows.length > 0) {
-                const orderData = rows[0];
-                return new Order(
-                    orderData.id,
-                    orderData.userid,
-                    orderData.useremail,
-                    JSON.parse(orderData.products),
-                    JSON.parse(orderData.productsquantity),
-                    JSON.parse(orderData.total_price),
-                    orderData.payment_method,
-                    orderData.address,
-                    orderData.phone_number,
-                    orderData.first_name,
-                    orderData.last_name
-                );
+            const query1 = 'SELECT * FROM orders WHERE user_id = ?';
+            let result = await query(query1, [userid]);
+            if (result.length > 0) {
+                result.forEach((order, index) => {
+
+                    //order.total_price = JSON.parse(order.products);
+                    //order.total_price = JSON.parse(order.products_quantity);
+
+                });
+
             }
-            return null;
+            return result;
         } catch (error) {
             console.error('Error retrieving order:', error);
             return null;
