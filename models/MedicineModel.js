@@ -140,7 +140,7 @@ class MedicineModel {
             let results = [];
             for (let i = 0; i < productNames.length; i++) {
                 const queryString = 'SELECT * FROM mediplus.medicine_details WHERE `Medicine Name` = ?';
-                const result = await query(queryString, productNames[i].medicine_name);
+                let result = await query(queryString, productNames[i].medicine_name);
                 if (result != "" && result != undefined && result != []) {
                     results.push(result[0]);
 

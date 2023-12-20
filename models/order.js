@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-
+const { connection, query } = require('../database/MySQL-connection');
 class Order {
     constructor(id, userid, useremail, products, productsquantity, total_price, payment_method, address, phone_number, first_name, last_name) {
         this.id = id;
@@ -16,22 +16,30 @@ class Order {
     }
 
     // Create an order
-    async createOrder(id, userid, useremail, products, productsquantity, total_price, payment_method, address, phone_number, first_name, last_name) {
+    static async createOrder(userid, useremail, products, productsquantity, payment_method, address, phone_number, firstname, lastname) {
         try {
-            const query = ('INSERT INTO orders (userid,useremail, products, productsquantity, total_price, payment_method, address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [id, userid, useremail, products, productsquantity, prices, total_price, payment_method, address, phone_number]);
-            await connection.promise().execute(query, [
-                this.userid,
-                this.useremail,
-                JSON.stringify(this.products),
-                JSON.stringify(this.productsquantity),
-                JSON.stringify(this.total_price),
-                this.payment_method,
-                this.address,
-                this.phone_number,
-                this.first_name,
-                this.last_name
+            let total_price = 0;
+            let productsnames = [];
+            let productsquant = [];
+            console.log("array of meds is " + JSON.stringify(products, null, 2));
+            console.log("array ofquant is " + JSON.stringify(productsquantity, null, 2));
 
-            ]);
+            if (products.length > 0) {
+                products.forEach((product, index) => {
+                    total_price += product.Price * productsquantity[index].medicine_quantity;
+                    productsnames.push(product['Medicine Name']);
+                    productsquant.push(productsquantity[index].medicine_quantity);
+
+                });
+                productsnames = JSON.stringify(productsnames);
+                productsquant = JSON.stringify(productsquant);
+                total_price = JSON.stringify(total_price);
+                const query1 = 'INSERT INTO orders (firstname,lastname,email,user_id,products, products_quantity, total_price, payment_method, address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)';
+                await query(query1, [firstname, lastname, useremail, userid, productsnames, productsquant, total_price, payment_method, address, phone_number])
+            } else {
+                console.log("something wronh in arrays sent to this function");
+            }
+
             console.log('Order created successfully.');
         } catch (error) {
             console.error('Error creating order:', error);

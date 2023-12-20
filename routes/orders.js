@@ -19,8 +19,12 @@ router.post('/placeorder', async(req, res) => {
 
 
     router.use(bodyParser.json());
-    const details = { products, total, firstName, lastName, email, phone, address, city, paymentMethod } = req.body;
-    console.log("order details are " + details.firstname + details.lastname + details.phone + details.address + details.city + details.paymentmethod);
+    const details = req.body;
+    console.log("order details are " + details.firstname + details.lastname + details.phone + details.address + details.city + details.paymentmethod + " user id " + req.session.userId);
+    cartdata = await cart.getCartByUserId(req.session.userId);
+    console.log(JSON.stringify(cartdata, null, 2));
+    meds = await MedicineModel.getMedicinesarray(cartdata);
+    orders.createOrder(req.session.userId, req.session.userEmail, meds, cartdata, details.paymentmethod, details.address, details.phone, details.firstname, details.lastname)
 
     res.render('orders', {
         cart: array,
