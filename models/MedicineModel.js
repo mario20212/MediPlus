@@ -88,13 +88,13 @@ class MedicineModel {
     }
   }
 
-  async getMedicinesByUses(uses, excludedId) {
+  async getMedicinesByUses(uses, excludedId, medicineName) {
     try {
-      const queryString = 'SELECT * FROM ?? WHERE Uses LIKE ? AND id != ? LIMIT 8';
-      const escapedValues = [tableName, uses, excludedId];
+      const queryString = 'SELECT * FROM ?? WHERE Uses LIKE ? AND id != ? AND `Medicine Name` != ? LIMIT 8';
+      const escapedValues = [tableName, uses, excludedId,medicineName];
       const [result] = await query(queryString, escapedValues);
     
-      console.log(`Medicines with uses ${uses} excluding ID ${excludedId}:`, result);
+      console.log(`Medicines with uses ${uses} excluding ID ${excludedId}:`,  );
     
       return result;
     } catch (error) {

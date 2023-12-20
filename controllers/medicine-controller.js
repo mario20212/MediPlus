@@ -36,7 +36,7 @@ class MedicineController {
 
         medicine.UsesArray = matches ? matches.map(use => use.trim()) : [medicine.Uses];
 
-        const relatedMedicines = await this.medModel.getMedicinesByUses(medicine.Uses, medicine.id);
+        const relatedMedicines = await this.medModel.getMedicinesByUses(medicine.Uses, medicine.id, medicine['Medicine Name']);
 
         return { medicine, relatedMedicines }; 
         
