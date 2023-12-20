@@ -1,0 +1,47 @@
+/* Add these styles to your existing CSS or create a new file for image_to_text styling */
+
+.upload-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .upload-left {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+  }
+  
+  .upload-right {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  h2 {
+    color: #007bff;
+  }
+  
