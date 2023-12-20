@@ -31,30 +31,30 @@ class Schedule {
 
         allSchedules.forEach(schedule => {
             try {
-                if (schedule.wtt == "1beforeBreakfast" && currentHour === 1 && currentMinutes === 56) {
+                if (schedule.wtt == "1beforeBreakfast" && currentHour === 9 && currentMinutes === 0) {
 
                     const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
                     const system = new System();
                     system.sendEmail(schedule.email, message);
-                } else if (schedule.whenToTakeValues == "2afterBreakfast" && currentHour === 12) {
+                } else if (schedule.whenToTakeValues == "2afterBreakfast" && currentHour === 12 && currentMinutes === 0) {
                     // If the current hour is in the specified options, send the email reminder
                     const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
-                } else if (schedule.whenToTakeValues == "3beforeLunch" && currentHour === 15) {
+                } else if (schedule.whenToTakeValues == "3beforeLunch" && currentHour === 15 && currentMinutes === 0) {
                     // If the current hour is in the specified options, send the email reminder
                     const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
-                } else if (schedule.whenToTakeValues == "4afterLunch" && currentHour === 18) {
+                } else if (schedule.whenToTakeValues == "4afterLunch" && currentHour === 18 && currentMinutes === 0) {
                     // If the current hour is in the specified options, send the email reminder
                     const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
                     const system = new System();
                     system.sendEmail(this.user_email, message);
-                } else if (schedule.whenToTakeValues == "5beforeDinner" && currentHour === 21) {
+                } else if (schedule.whenToTakeValues == "5beforeDinner" && currentHour === 21 && currentMinutes === 0) {
                     // If the current hour is in the specified options, send the email reminder
                     const message = `It's time to take ${schedule.dosage} pills of your medicine (${schedule.medicineName}) now.`;
 
@@ -71,7 +71,7 @@ class Schedule {
     static async continuousReminderCheck() {
         while (true) {
             await this.checkAndSendReminder();
-            await new Promise(resolve => setTimeout(resolve, 45000)); // Delay for one second
+            await new Promise(resolve => setTimeout(resolve, 31000)); // Delay for one second
         }
     }
 }
