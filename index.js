@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.locals.username = req.session.username;
     res.locals.id = req.session.userId;
     res.locals.isAdmin = req.session.isAdmin;
@@ -47,6 +47,7 @@ app.use('/system', isLoggedIn, require('./routes/system.js'))
 app.use('/view_all', isLoggedIn, require('./routes/view_all.js'))
 app.use('/cart', require('./routes/cart.js'))
 app.use('/profile', require('./routes/profile'))
+app.use('/order', require('./routes/orders.js'))
 app.use('/conflict', isLoggedIn, require('./routes/conflict.js'))
 mailer.continuousReminderCheck();
 
