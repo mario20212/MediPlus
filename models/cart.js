@@ -107,7 +107,7 @@ class cart {
             console.error('Error updating cart in the database:', error);
         }
     }
-
+u
     async calculateTotal() {
             try {
                 let totalPrice = 0.0;
